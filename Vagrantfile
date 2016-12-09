@@ -4,6 +4,13 @@ sudo apt-get update
 # git
 sudo apt-get -y install git
 
+# mysql
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
+sudo apt-get install -y libmysqlclient-dev \
+                        mysql-server
+# sudo service mysql [status|start|stop|restart]
+
 # python 3
 sudo apt-get -y install build-essential \
                         python3 \
@@ -14,13 +21,9 @@ sudo ln -s /usr/bin/python3.4 /usr/bin/python
 # pip
 sudo apt-get -y install python3-pip
 sudo pip3 install --upgrade pip
+sudo pip3 install schedule
 sudo pip3 install pyquery
-
-# mysql
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-sudo apt-get install -y mysql-server
-# sudo service mysql [status|start|stop|restart]
+sudo pip3 install mysqlclient
 SCRIPT
 
 Vagrant.configure("2") do |default|
