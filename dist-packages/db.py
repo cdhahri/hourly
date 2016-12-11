@@ -9,16 +9,18 @@ def user__read__all():
   try:
     db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
     cursor = db.cursor()
-    cursor.execute('SELECT twitter_id, since_id, fitbit_url FROM user;')
+    cursor.execute('SELECT twitter_id, since_id, fitbit_url, foursquare_id, foursquare_last FROM user;')
     results = cursor.fetchall()
     users = {}
     for result in results:
       twitter_id = result[0]
       since_id = result[1]
       fitbit_url = result[2]
+      foursquare_id = result[3]
+      foursquare_last = result[4]
       if since_id is None:
         since_id = -1
-      users[twitter_id] = {'since_id':since_id,'fitbit_url':fitbit_url}
+      users[twitter_id] = {'since_id':since_id,'fitbit_url':fitbit_url,'foursquare_id':foursquare_id,'foursquare_last':foursquare_last}
     return users
   except Exception as e:
     print('[ERR] db.user__read__all: {0}'.format(e))
@@ -34,6 +36,18 @@ def user__update__since_id(twitter_id, since_id):
     db.commit()
   except Exception as e:
     print('[ERR] db.user__update__since_id: {0}'.format(e))
+    db.rollback()
+  finally:
+    db.close()
+
+def user__update__foursquare_last(twitter_id, foursquare_last):
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('UPDATE user SET foursquare_last=%s WHERE twitter_id=%s;', (foursquare_last, twitter_id))
+    db.commit()
+  except Exception as e:
+    print('[ERR] db.user__update__foursquare_last: {0}'.format(e))
     db.rollback()
   finally:
     db.close()
@@ -89,3 +103,55 @@ def history_fitbit__create(twitter_id, time_id, data):
     db.rollback()
   finally:
     db.close()
+
+#
+# history_foursquare
+#
+def history_foursquare__create(twitter_id, time_id, data):
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('INSERT INTO history_foursquare (twitter_id,time_id,data) VALUES (%s,%s,%s)', (twitter_id, time_id, data))
+    db.commit()
+  except Exception as e:
+    print('[ERR] db.history_foursquare__create: {0}'.format(e))
+    db.rollback()
+  finally:
+    db.close()
+
+def history_foursquare__read__tip_count(twitter_id, time_id):
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('SELECT data FROM history_foursquare WHERE twitter_id = %s AND time_id = %s', (twitter_id, time_id))
+    row = cursor.fetchone()
+    import json
+    data = json.loads(row[0])
+    return data['profile']['tips']['count']
+  except Exception as e:
+    print('[ERR] db.history_foursquare__read__tip_count: {0}'.format(e))
+    return None
+  finally:
+    db.close()
+
+#
+# tip
+#
+def tip__create(tip):
+  tip_id = tip['id']
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    import json
+    cursor.execute('INSERT INTO tip (tip_id,tip) VALUES (%s,%s)', (tip_id, json.dumps(tip, sort_keys=True)))
+    db.commit()
+  except Exception as e:
+    print('[ERR] db.tip__create: {0}'.format(e))
+    db.rollback()
+  finally:
+    db.close()
+
+def tip__create__batch(tips):
+  if tips is not None:
+    for tip in tips:
+      tip__create(tip)
