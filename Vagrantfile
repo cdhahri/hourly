@@ -24,11 +24,16 @@ sudo pip3 install --upgrade pip
 sudo pip3 install schedule
 sudo pip3 install pyquery
 sudo pip3 install mysqlclient
+
+# nginx
+sudo apt-get install -y nginx
 SCRIPT
 
 Vagrant.configure("2") do |default|
   default.vm.box = "ubuntu/trusty64"
   default.vm.hostname = "hourly"
+
+  default.vm.network "forwarded_port", guest: 80, host: 8888
 
   # shell provisioning
   default.vm.provision "shell", inline: $script
