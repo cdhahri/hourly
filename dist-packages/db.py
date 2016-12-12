@@ -67,6 +67,22 @@ def history_twitter__create(twitter_id, time_id, data):
   finally:
     db.close()
 
+def history_twitter__read(twitter_id, from_time_id, to_time_id):
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('SELECT time_id, data FROM history_twitter WHERE twitter_id = %s AND time_id >= %s AND time_id <= %s ORDER BY time_id;', (twitter_id, from_time_id, to_time_id))
+    results = cursor.fetchall()
+    activity = []
+    for result in results:
+      activity.append({'time_id':result[0], 'data':result[1]})
+    return activity
+  except Exception as e:
+    print('[ERR] db.history_twitter__read: {0}'.format(e))
+    return []
+  finally:
+    db.close()
+
 #
 # tweet
 #
