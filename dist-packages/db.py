@@ -105,6 +105,21 @@ def tweet__create__batch(tweets):
     for tweet in tweets:
       tweet__create(tweet)
 
+def tweet__read(tweet_id):
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('SELECT tweet FROM tweet WHERE tweet_id = {}'.format(tweet_id))
+    row = cursor.fetchone()
+    import json
+    tweet = json.loads(row[0])
+    return tweet
+  except Exception as e:
+    print('[ERR] db.tweet__read: {0}'.format(e))
+    return None
+  finally:
+    db.close()
+
 #
 # history_fitbit
 #
