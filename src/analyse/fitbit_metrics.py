@@ -86,6 +86,32 @@ stat['floors'] = {
   "22":0,
   "23":0
 }
+stat['_'] = {
+  "00":0,
+  "01":0,
+  "02":0,
+  "03":0,
+  "04":0,
+  "05":0,
+  "06":0,
+  "07":0,
+  "08":0,
+  "09":0,
+  "10":0,
+  "11":0,
+  "12":0,
+  "13":0,
+  "14":0,
+  "15":0,
+  "16":0,
+  "17":0,
+  "18":0,
+  "19":0,
+  "20":0,
+  "21":0,
+  "22":0,
+  "23":0
+}
 
 activity = db.history_fitbit__read('10449052', time_id_from, time_id_to)
 
@@ -120,6 +146,13 @@ for _ in activity[1:]:
     stat['distance'][prev_hour] = stat['distance'][prev_hour] + (curr_distance-prev_distance)
     stat['steps'][prev_hour] = stat['steps'][prev_hour] + (curr_steps-prev_steps)
     stat['floors'][prev_hour] = stat['floors'][prev_hour] + (curr_floors-prev_floors)
+
+    if curr_distance-prev_distance != 0.0:
+      stat['_'][prev_hour] = stat['_'][prev_hour] + 1
+    if curr_steps-prev_steps != 0:
+      stat['_'][prev_hour] = stat['_'][prev_hour] + 1
+    if curr_floors-prev_floors != 0:
+      stat['_'][prev_hour] = stat['_'][prev_hour] + 1
 
 with open('/tmp/fitbit_metrics.json', 'w') as file:
   json.dump(stat, file, sort_keys=True)
