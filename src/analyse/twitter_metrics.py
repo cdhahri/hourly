@@ -163,5 +163,5 @@ for _ in activity[1:]:
     stat['followers'][prev_hour] = stat['followers'][prev_hour] + (curr_profile['followers_count'] - prev_profile['followers_count'])
     stat['listed'][prev_hour] = stat['listed'][prev_hour] + (curr_profile['listed_count'] - prev_profile['listed_count'])
 
-with open('/tmp/twitter_count.json', 'w') as file:
+with open('/tmp/twitter_metrics.json', 'w') as file:
   json.dump(stat, file, sort_keys=True)

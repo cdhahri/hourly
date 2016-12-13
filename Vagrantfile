@@ -14,6 +14,8 @@ sudo apt-get install -y libmysqlclient-dev \
 # python 3
 sudo apt-get -y install build-essential \
                         python3 \
+                        libxml2-dev \
+                        libxslt1-dev \
                         python3-dev
 sudo rm /usr/bin/python
 sudo ln -s /usr/bin/python3.4 /usr/bin/python
