@@ -2,3 +2,7 @@
 __pycache__
 config/twitter.json
 config/foursquare.json
+src/rf/training.1600000.processed.noemoticon.csv
+src/rf/data_tmp/*json
+src/rf/WNdb-3.0.tar.gz
+src/rf/WordNet-3.0.tar.gz

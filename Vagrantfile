@@ -29,6 +29,19 @@ sudo pip3 install mysqlclient
 
 # nginx
 sudo apt-get install -y nginx
+
+# WordNet deps
+sudo apt-get install -y tk-dev
+# http://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz
+# vi src/stubs.c
+# before #include <tcl.h>
+# add #define USE_INTERP_RESULT 1
+# export PATH="${PATH}:/usr/local/WordNet-3.0/bin
+
+# machine learning
+sudo pip install numpy
+sudo pip install scipy
+sudo pip install scikit-learn
 SCRIPT
 
 Vagrant.configure("2") do |default|
