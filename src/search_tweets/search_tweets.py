@@ -6,14 +6,12 @@ import config
 token = config.load_token('/vagrant/config/twitter.json')
 
 import json
-# tweets
-with open('tweets.json') as file:
-  tweets = json.load(file)
 # queries
 with open('queries.json') as file:
   queries = json.load(file)
 
 import requests
+import db
 while True:
   for query in queries:
     url = 'https://api.twitter.com/1.1/search/tweets.json'
@@ -31,10 +29,8 @@ while True:
         for key in ['contributors', 'favorited', 'geo', 'id', 'in_reply_to_screen_name', 'in_reply_to_status_id', 'in_reply_to_user_id', 'metadata', 'retweeted', 'user']:
           if key in status:
             del status[key]
-      tweets.extend(tweets_remote['statuses'])
+      db.tweet_sentiment__create__batch(tweets_remote['statuses'])
       query['since_id'] = tweets_remote['search_metadata']['max_id_str']
-      with open('tweets.json', 'w') as file:
-        json.dump(tweets, file, sort_keys=True)
       with open('queries.json', 'w') as file:
         json.dump(queries, file, sort_keys=True)
     elif r.status_code is 429:
