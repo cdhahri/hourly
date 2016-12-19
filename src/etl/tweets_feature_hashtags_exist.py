@@ -10,9 +10,9 @@ with open(r, 'r') as file:
 hashtags = []
 for tweet in tweets:
   if len(tweet['entities']['hashtags']) > 0:
-    hashtags.append(True)
+    hashtags.append(0)
   else:
-    hashtags.append(False)
+    hashtags.append(1)
 
 with open(w, 'w') as file:
   json.dump(hashtags, file)

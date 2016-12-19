@@ -40,10 +40,16 @@ def user_tweets_max_id(token, screen_name, count, max_id):
 
 def tweet(token, tweet_id):
   url = 'https://api.twitter.com/1.1/statuses/show.json'
-  params = {'id': tweet_id, 'trim_user': 'true', 'include_my_retweet': 'false', 'include_entities': 'true'}
+  params = {'id': tweet_id, 'trim_user': 'false', 'include_my_retweet': 'false', 'include_entities': 'true'}
   headers= {'Authorization': 'Bearer ' + token}
   try:
-    r = requests.get(url, params=params, headers=headers)
+    while True:
+      r = requests.get(url, params=params, headers=headers)
+      if r.status_code == 429:
+        import time
+        time.sleep(120)
+      else:
+        break
     return json.loads(r.text)
   except Exception as e:
     print('[ERR] api_twitter.tweet: {0}'.format(e))

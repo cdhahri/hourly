@@ -34,6 +34,9 @@ with open('./data_tmp/pearson/week.json', 'r') as file:
 with open('./data_tmp/pearson/top_mentions.json', 'r') as file:
   top_mentions = json.load(file)
 
+with open('./data_tmp/pearson/top_mentions_combined.json', 'r') as file:
+  top_mentions_combined = json.load(file)
+
 #with open('./data_tmp/pearson/place.json', 'r') as file:
 #  place = json.load(file)
 
@@ -56,4 +59,6 @@ print('Day              : ' + str(pearsonr(target, day)))
 print('Week             : ' + str(pearsonr(target, week)))
 for top_mention in top_mentions:
   print('Top mention      : ' + str(pearsonr(target, top_mention)))
+print('Top mention all  : ' + str(pearsonr(target, top_mentions_combined)))
 #print('Place            : ' + str(pearsonr(target, place)))
+

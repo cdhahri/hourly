@@ -9,7 +9,7 @@ with open(r, 'r') as file:
 
 hashtags = []
 for tweet in tweets:
-  if len(tweet['entities']['user_mentions']) > 0 or len(tweet['entities']['user_mentions']) > 0:
+  if len(tweet['entities']['hashtags']) > 0 or len(tweet['entities']['user_mentions']) > 0:
     hashtags.append(True)
   else:
     hashtags.append(False)
