@@ -202,3 +202,43 @@ def tip__create__batch(tips):
   if tips is not None:
     for tip in tips:
       tip__create(tip)
+
+#
+# tweet_sentiment
+#
+def tweet_sentiment__create(tweet):
+  tweet_id = tweet['id_str']
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    import json
+    cursor.execute('INSERT INTO tweet_sentiment (tweet_id,tweet) VALUES (%s,%s)', (tweet_id, json.dumps(tweet, sort_keys=True)))
+    db.commit()
+  except Exception as e:
+    print('[ERR] db.tweet_sentiment__create: {0}'.format(e))
+    db.rollback()
+  finally:
+    db.close()
+
+def tweet_sentiment__create__batch(tweets):
+  if tweets is not None:
+    for tweet in tweets:
+      tweet_sentiment__create(tweet)
+
+def tweet_sentiment__read():
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('SELECT tweet FROM tweet_sentiment')
+    results = cursor.fetchall()
+    tweets = []
+    for result in results:
+      import json
+      tweet = json.loads(result[0])
+      tweets.append(tweet)
+    return tweets
+  except Exception as e:
+    print('[ERR] db.tweet__read: {0}'.format(e))
+    return None
+  finally:
+    db.close()

@@ -42,6 +42,12 @@ sudo apt-get install -y tk-dev
 sudo pip install numpy
 sudo pip install scipy
 sudo pip install scikit-learn
+
+# SentiStrengh
+wget http://sentistrength.wlv.ac.uk/SentiStrengthCom.jar
+wget http://sentistrength.wlv.ac.uk/SentStrength_Data_Sept2011.zip
+# java -jar SentiStrengthCom.jar sentidata ./db/ text love+u
+# java -jar SentiStrengthCom.jar sentidata ./db/ input input.txt
 SCRIPT
 
 Vagrant.configure("2") do |default|
