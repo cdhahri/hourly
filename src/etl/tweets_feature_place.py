@@ -5,7 +5,7 @@ import api_foursquare
 import config
 token = config.load_token('/vagrant/config/foursquare.json')
 
-r = '/vagrant/tmp/tweets_larryconlin.json'
+r = '/vagrant/tmp/tweets.json'
 w = '/vagrant/src/rf/data_tmp/pearson/place.json'
 
 import json

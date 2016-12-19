@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-r = '/vagrant/tmp/tweets_larryconlin.json'
-w = '/vagrant/tmp/tweets_larryconlin.csv'
+r = '/vagrant/tmp/tweets.json'
+w = '/vagrant/tmp/tweets.csv'
 
 import json
 with open(r, 'r') as file:

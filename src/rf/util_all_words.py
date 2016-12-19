@@ -17,7 +17,10 @@ for i in range(2):
   import re
   keys_to_delete = []
   for key in sorted(hashset.keys()):
-    if bool(re.search('^[!#@$].*', key)):
+    #if bool(re.search('^[!#@$].*', key)):
+    m = re.match('^#(.+)$', key)
+    if m is not None:
+      hashset[m.group(1)] = None
       keys_to_delete.append(key)
 
   for key in keys_to_delete:

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-r = '/vagrant/tmp/tweets_larryconlin.json'
+r = '/vagrant/tmp/tweets.json'
 w = '/vagrant/src/rf/data_tmp/pearson/source.json'
 
 import json

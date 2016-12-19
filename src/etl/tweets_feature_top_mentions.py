@@ -22,7 +22,7 @@ for tweet in tweets:
       n += user_mentions_occurences[screen_name]
     user_mentions_occurences[screen_name] = n
 
-hi = min(3, len(user_mentions_occurences))
+hi = min(5, len(user_mentions_occurences))
 
 all = []
 for top_user_mention in sorted(user_mentions_occurences.items(), key=lambda x: x[1], reverse=True)[:hi]:

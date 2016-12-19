@@ -6,7 +6,6 @@ data = ['./data_tmp/train.csv','./data_tmp/test.csv']
 
 first_path = ['./data_tmp/train/count_all_capital.json','./data_tmp/test/count_all_capital.json']
 rest_of_paths = [
- ['./data_tmp/train/count_dot.json','./data_tmp/test/count_dot.json'],
  ['./data_tmp/train/count_exclamation_mark.json','./data_tmp/test/count_exclamation_mark.json'],
  ['./data_tmp/train/count_negative_word.json','./data_tmp/test/count_negative_word.json'],
  ['./data_tmp/train/count_positive_word.json','./data_tmp/test/count_positive_word.json'],
