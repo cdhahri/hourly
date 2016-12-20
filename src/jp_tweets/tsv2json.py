@@ -7,7 +7,7 @@ import api_twitter
 import config
 token = config.load_token('/vagrant/config/twitter.json')
 
-path = '/vagrant/tmp/sample_user2.tsv'
+path = '/vagrant/tmp/sample_user1.tsv'
 
 with open(path, newline='', encoding='utf-8') as file:
   csv_reader = csv.reader(file, delimiter='\t')

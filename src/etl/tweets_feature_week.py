@@ -14,8 +14,8 @@ days = {
   'Wed': 1,
   'Thu': 1,
   'Fri': 1,
-  'Sat': 1,
-  'Sun': 1
+  'Sat': 2,
+  'Sun': 2
 }
 
 feature = []

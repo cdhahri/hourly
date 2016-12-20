@@ -9,7 +9,10 @@ with open('/vagrant/tmp/tweets.json', 'r') as file:
 
 targets = []
 for tweet in tweets:
-  targets.append(int(tweet['X_sentiment']))
+  sentiment = 0
+  if tweet['X_sentiment'] != '':
+    sentiment = int(tweet['X_sentiment'])
+  targets.append(sentiment)
 
 with open('/vagrant/src/rf/data_tmp/pearson/target.json', 'w') as file:
   json.dump(targets, file, sort_keys=True)

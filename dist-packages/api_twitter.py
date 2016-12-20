@@ -25,6 +25,23 @@ def user_tweets(token, user_id, since_id):
     print('[ERR] api_twitter.user_tweets: {0}'.format(e))
     return []
 
+def user_tweets_before(token, user_id, tweet_id, count):
+  url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
+  params = {'user_id':user_id,'count':count,'max_id':tweet_id,'trim_user':'true','exclude_replies':'true','include_rts':'false'}
+  headers= {'Authorization': 'Bearer ' + token}
+  try:
+    while True:
+      r = requests.get(url, params=params, headers=headers)
+      if r.status_code == 429:
+        import time
+        time.sleep(120)
+      else:
+        break
+    return json.loads(r.text)
+  except Exception as e:
+    print('[ERR] api_twitter.user_tweets_before: {0}'.format(e))
+    return []
+
 def user_tweets_max_id(token, screen_name, count, max_id):
   url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
   params = {'screen_name':screen_name,'count':count,'trim_user':'true','exclude_replies':'true','include_rts':'false'}
