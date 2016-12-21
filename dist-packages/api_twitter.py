@@ -42,6 +42,19 @@ def user_tweets_before(token, user_id, tweet_id, count):
     print('[ERR] api_twitter.user_tweets_before: {0}'.format(e))
     return []
 
+def user_tweets_max_id_by_user_id(token, user_id, count, max_id):
+  url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
+  params = {'user_id':user_id,'count':count,'trim_user':'true','exclude_replies':'false','include_rts':'true'}
+  if max_id is not None:
+    params['max_id'] = max_id
+  headers= {'Authorization': 'Bearer ' + token}
+  try:
+    r = requests.get(url, params=params, headers=headers)
+    return json.loads(r.text)
+  except Exception as e:
+    print('[ERR] api_twitter.user_tweets_max_id: {0}'.format(e))
+    return []
+
 def user_tweets_max_id(token, screen_name, count, max_id):
   url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
   params = {'screen_name':screen_name,'count':count,'trim_user':'true','exclude_replies':'true','include_rts':'false'}
@@ -57,7 +70,7 @@ def user_tweets_max_id(token, screen_name, count, max_id):
 
 def tweet(token, tweet_id):
   url = 'https://api.twitter.com/1.1/statuses/show.json'
-  params = {'id': tweet_id, 'trim_user': 'false', 'include_my_retweet': 'false', 'include_entities': 'true'}
+  params = {'id': tweet_id, 'trim_user': 'true', 'include_my_retweet': 'false', 'include_entities': 'true'}
   headers= {'Authorization': 'Bearer ' + token}
   try:
     while True:
