@@ -32,10 +32,17 @@ with open('/vagrant/src/rf/data_tmp/pearson/target.json', 'r') as file:
 
 #mean w variance w momentum w entropy
 
-mat = []
+mat_pos = []
+mat_neg = []
 for i in range(len(target)):
-  row = [day[i], week[i], hashtag[i], mentions[i], media[i], favorite[i], source[i], target[i]]
-  mat.append(row)
+  row = [day[i], week[i], hashtag[i], mentions[i], media[i], favorite[i], source[i], int(target[i])]
+  if target[i] == '0':
+    mat_pos.append(row)
+  else:
+    mat_neg.append(row)
+
+mat = mat_pos
+mat.extend(mat_neg)
 
 with open('/vagrant/data/osn-data/matrices/{}.json'.format(user_id), 'w') as file:
   json.dump(mat, file)
