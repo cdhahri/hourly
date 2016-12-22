@@ -8,3 +8,6 @@ src/rf/WNdb-3.0.tar.gz
 src/rf/WordNet-3.0.tar.gz
 src/search_tweets/*json
 tmp/
+data/osn-data/features_step*
+data/osn-data/tweets
+data/osn-data/venues
