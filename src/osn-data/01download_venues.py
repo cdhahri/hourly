@@ -7,13 +7,19 @@ token = config.load_token('/vagrant/config/foursquare.json')
 
 with open('/vagrant/data/osn-data/ids.json', 'r') as file:
   ids = json.load(file)
+
+ids = [106104712, 109223169, 11437162, 117093537, 11922222, 119436439, 13385712, 14098915, 14216821, 14229632, 14262523, 14701396, 14900774, 14901281, 15370082, 15412985, 15413409, 15479048, 15482020, 15507115, 15526160, 15844952]
   
 for user_id in ids:
   user_id = str(user_id)
 
+  print('user {}'.format(user_id))
+
   import os.path
   if os.path.exists('/vagrant/data/osn-data/venues/{}.json'.format(user_id)):
     continue
+
+  print('user {} already processed'.format(user_id))
 
   venue_categories = {}
 

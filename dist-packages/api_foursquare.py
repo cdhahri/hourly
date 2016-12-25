@@ -25,11 +25,17 @@ def venue(token, latitude, longitude):
   ll = '{},{}'.format(latitude, longitude)
   params = {'ll': ll, 'oauth_token': token, 'v':'20161116'}
   try:
-    r = requests.get(url, params=params)
-    venues =  json.loads(r.text)['response']['venues']
-    if len(venues) == 0:
-      return None
-    return venues[0]
+    while True:
+      r = requests.get(url, params=params)
+      if r.status_code == 403:
+        print('[ERR] api_foursquare.venue_category: {0}'.format(r.text))
+        import time
+        time.sleep(240)
+        continue
+      venues = json.loads(r.text)['response']['venues']
+      if len(venues) == 0:
+        return None
+      return venues[0]
   except Exception as e:
     print('[ERR] api_foursquare.venue: {0}'.format(e))
     return None
@@ -53,4 +59,20 @@ def venue_category(token, venue_id):
       return primary
   except Exception as e:
     print('[ERR] api_foursquare.venue_category: {0}'.format(e))
+    return None
+
+def category_hierarchy(token):
+  url = 'https://api.foursquare.com/v2/venues/categories'
+  params = {'oauth_token': token, 'v':'20161116'}
+  try:
+    while True:
+      r = requests.get(url, params=params)
+      if r.status_code == 403:
+        print('[ERR] api_foursquare.category_hierarchy: {0}'.format(r.text))
+        import time
+        time.sleep(120)
+        continue
+      return json.loads(r.text)['response']['categories']
+  except Exception as e:
+    print('[ERR] api_foursquare.category_hierarchy: {0}'.format(e))
     return None
