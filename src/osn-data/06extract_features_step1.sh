@@ -1,9 +1,0 @@
-#!/bin/bash
-
-./extract_features_step1/feature_count_all_capital.py
-./extract_features_step1/feature_count_exclamation_mark.py
-./extract_features_step1/feature_count_question_mark.py
-./extract_features_step1/feature_count_negative_word.py
-./extract_features_step1/feature_count_positive_word.py
-./extract_features_step1/feature_exist_more_than_three_dots.py
-./extract_features_step1/feature_exist_more_than_three_vowels.py

@@ -6,10 +6,8 @@ token = config.load_token('/vagrant/config/foursquare.json')
 
 # ids
 import json
-with open('/vagrant/data/osn-data/ids.json', 'r') as file:
+with open('/vagrant/data/osn-data/.ids.json', 'r') as file:
   ids = json.load(file)
-
-ids = [10521002, 106104712, 109485267, 111178547, 113441429, 115138473, 11661442, 117567036, 11922222, 127828353, 1315286089, 133794989, 13385712, 142406505, 142802575, 14852278, 14900774, 15507115, 16090559, 16133557, 164266156, 16427456, 16830304, 16983823, 17289508, 17395031, 17997140, 18100365, 18107739, 18142778, 18853460, 19257498, 19388800, 199082056, 20022522, 20405425, 2084821, 212732867, 212991627, 21449222]
 
 # categories
 with open('/vagrant/data/osn-data/category_coordinates.json', 'r') as file:
