@@ -29,6 +29,7 @@ for user_id in ids:
   mentions = []
 #  tags = []
   coordinates = []
+  top_mentions = []
   for key in sorted(byday_aggregated.keys()):
     target.append(byday_aggregated[key]['_target'])
     hashtags_count.append(byday_aggregated[key]['hashtags_count'])
@@ -41,6 +42,7 @@ for user_id in ids:
     mentions.append(byday_aggregated[key]['mentions'])
 #    tags.append(byday_aggregated[key]['tags'])
     coordinates.append(byday_aggregated[key]['coordinates'])
+    top_mentions.append(byday_aggregated[key]['top_mentions'])
 
   if len(set(target)) < 2:
     continue
@@ -54,14 +56,14 @@ for user_id in ids:
     print('@{}'.format(hashtags_count_pearson[1]))
   '''
 
-  #'''
+  '''
   mentions_count = stats.zscore(mentions_count).tolist()
   mentions_count_pearson = pearsonr(target, mentions_count)
   if abs(mentions_count_pearson[0]) > 0.3:
     print(user_id)
     print('@{}'.format(mentions_count_pearson[0]))
     print('@{}'.format(mentions_count_pearson[1]))
-  #'''
+  '''
 
   '''
   favourites_count = stats.zscore(favourites_count).tolist()
@@ -150,3 +152,23 @@ for user_id in ids:
     print('@{}'.format(coordinates_pearson[0]))
     print('@{}'.format(coordinates_pearson[1]))
   '''
+
+  #'''
+  target_top_mentions = []
+  top_mentions_mentions = []
+  for i in range(len(target)):
+    for j in range(len(top_mentions[i])):
+      #?
+      #if top_mentions[i][j] == -100:
+      #  continue
+      target_top_mentions.append(target[i])
+      top_mentions_mentions.append(top_mentions[i][j])
+  if len(set(top_mentions_mentions)) < 2:
+    continue
+  top_mentions_mentions = stats.zscore(top_mentions_mentions).tolist()
+  top_mentions_pearson = pearsonr(target_top_mentions, top_mentions_mentions)
+  if abs(top_mentions_pearson[0]) > 0.2 and abs(top_mentions_pearson[1]) < 0.01:
+    print(user_id)
+    print('@{}'.format(top_mentions_pearson[0]))
+    print('@{}'.format(top_mentions_pearson[1]))
+  #'''

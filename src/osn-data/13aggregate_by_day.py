@@ -57,6 +57,8 @@ for user_id in ids:
   auto_inc2 = {}
   k = 0
   auto_inc_mentions = {}
+  l = 0
+  auto_inc_top_mentions = {}
   byday_aggregated = {}
   for key, day in byday.items():
     target = day['_target']
@@ -97,6 +99,14 @@ for user_id in ids:
         k += 1
         auto_inc_mentions[mention] = k
       mentions_values.append(auto_inc_mentions[mention])
+
+    top_mentions = day['top_mentions']
+    top_mentions_values = []
+    for mention in top_mentions:
+      if mention not in auto_inc_top_mentions:
+        l += 1
+        auto_inc_top_mentions[mention] = l
+      top_mentions_values.append(auto_inc_top_mentions[mention])
 
     '''
     mentions = day['mentions']
@@ -148,6 +158,7 @@ for user_id in ids:
       'mentions':mentions_values,
 #      'tags':tags_values,
       'coordinates':coordinates_values,
+      'top_mentions':top_mentions_values,
     }
 
   with open(w, 'w') as file:

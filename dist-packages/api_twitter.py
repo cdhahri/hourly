@@ -50,7 +50,9 @@ def user_tweets_max_id_by_user_id(token, user_id, count, max_id):
   headers= {'Authorization': 'Bearer ' + token}
   try:
     r = requests.get(url, params=params, headers=headers)
-    return json.loads(r.text)
+    if r.status == 200:
+      return json.loads(r.text)
+    return []
   except Exception as e:
     print('[ERR] api_twitter.user_tweets_max_id: {0}'.format(e))
     return []

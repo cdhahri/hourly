@@ -56,6 +56,9 @@ for user_id in ids:
   with open('/vagrant/data/osn-data/features_step2/{}mentions.json'.format(user_id), 'r') as file:
     mentions = json.load(file)
 
+  with open('/vagrant/data/osn-data/features_step2/{}top_mentions.json'.format(user_id), 'r') as file:
+    top_mentions = json.load(file)
+
 #  tags = {}
 #  try:      
 #    with open('/vagrant/data/osn-data/features_step2/{}tags.json'.format(user_id), 'r') as file:
@@ -96,8 +99,13 @@ for user_id in ids:
         'active_passive':[],
         'mentions':[],
 #        'tags':[],
-        'coordinates':[]
+        'coordinates':[],
+        'top_mentions_day':[],
       }
+    top_mentions_day = []
+    for top_mention in top_mentions:
+      if top_mention in mentions[i]:
+        top_mentions_day.append(top_mention)
     byday[key]['_target'].append(targets[i])
     byday[key]['hashtags_count'].append(hashtags_count[i])
     byday[key]['mentions_count'].append(mentions_count[i])
@@ -110,6 +118,7 @@ for user_id in ids:
 #    if key in tags:
 #      byday[key]['tags'].extend(tags[key])
     byday[key]['coordinates'].append(coordinates[i])
+    byday[key]['top_mentions'] = top_mentions_day
 
   with open(w, 'w') as file:
     json.dump(byday, file, sort_keys=True)
