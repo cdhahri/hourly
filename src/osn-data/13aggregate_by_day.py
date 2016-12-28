@@ -87,6 +87,16 @@ for user_id in ids:
 
     week = day['week'][0]
 
+    day_night = day['day_night']
+    d = 0
+    n = 0
+    for dn in day_night:
+      if int(dn) > 20 or int(dn) < 6:
+        n += 1
+      else:
+        d += 1
+    day_night = d / (d + n)
+
     active_passive = day['active_passive']
     pos = active_passive.count(1)
     neg = active_passive.count(-1)
@@ -154,6 +164,7 @@ for user_id in ids:
       'media_count':media_count,
       'source':source,
       'week':week,
+      'day_night':day_night,
       'active_passive':active_passive,
       'mentions':mentions_values,
 #      'tags':tags_values,

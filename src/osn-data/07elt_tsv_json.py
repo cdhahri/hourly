@@ -23,7 +23,6 @@ def process(r, w):
     json.dump(out, file)
 
 for user_id in ids:
-  print(user_id)
   r = '/vagrant/data/osn-data/tweets/words/{}0_out.txt'.format(user_id)
   w = '/vagrant/data/osn-data/tweets/words/json/{}.json'.format(user_id)
   process(r, w)

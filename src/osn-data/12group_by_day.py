@@ -50,6 +50,9 @@ for user_id in ids:
   with open('/vagrant/data/osn-data/features_step2/{}week.json'.format(user_id), 'r') as file:
     week = json.load(file)
       
+  with open('/vagrant/data/osn-data/features_step2/{}day_night.json'.format(user_id), 'r') as file:
+    day_night = json.load(file)
+      
   with open('/vagrant/data/osn-data/features_step2/{}active_passive.json'.format(user_id), 'r') as file:
     active_passive = json.load(file)
       
@@ -96,6 +99,7 @@ for user_id in ids:
         'media_count':[],
         'source':[],
         'week':[],
+        'day_night':[],
         'active_passive':[],
         'mentions':[],
 #        'tags':[],
@@ -113,6 +117,7 @@ for user_id in ids:
     byday[key]['media_count'].append(media_count[i])
     byday[key]['source'].append(source[i])
     byday[key]['week'].append(week[i])
+    byday[key]['day_night'].append(day_night[i])
     byday[key]['active_passive'].append(active_passive[i])
     byday[key]['mentions'].extend(mentions[i])
 #    if key in tags:
