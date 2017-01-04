@@ -6,7 +6,7 @@ with open('/vagrant/data/osn-data/ids.json', 'r') as file:
   ids = json.load(file)
 
 for user_id in ids:
-  r = '/vagrant/data/osn-data/tweets/{}.json'.format(user_id)
+  r = '/vagrant/data/osn-data/tweets_selected/{}.json'.format(user_id)
   w = '/vagrant/data/osn-data/features_step2/{}top_mentions.json'.format(user_id)
 
   with open(r, 'r') as file:

@@ -25,7 +25,7 @@ def process(r, w):
       csv_writer.writerow(['','','','','',text])
 
 for user_id in ids:
-  r = '/vagrant/data/osn-data/tweets/{}.json'.format(user_id)
+  r = '/vagrant/data/osn-data/tweets_selected/{}.json'.format(user_id)
   w = '/vagrant/data/osn-data/tweets/csv/{}.csv'.format(user_id)
   process(r, w)
 

@@ -25,7 +25,10 @@ def process(r, w):
 for user_id in ids:
   r = '/vagrant/data/osn-data/tweets/words/{}0_out.txt'.format(user_id)
   w = '/vagrant/data/osn-data/tweets/words/json/{}.json'.format(user_id)
-  process(r, w)
+  try:
+    process(r, w)
+  except Exception as e:
+    print('{} {}'.format(user_id, e))
 
 #path = '/vagrant/data/osn-data/tweets/mentions/past_tweets/words'
 #from os import listdir

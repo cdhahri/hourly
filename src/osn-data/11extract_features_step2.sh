@@ -1,7 +1,8 @@
 #!/bin/bash
 
-./extract_features_step2/01feature_day.py
+#./extract_features_step2/01feature_day.py
 ./extract_features_step2/02feature_week.py
+./extract_features_step2/02feature_day_night.py
 ./extract_features_step2/03feature_hashtags_count.py
 ./extract_features_step2/04feature_mentions_count.py
 ./extract_features_step2/05feature_favourites_count.py
