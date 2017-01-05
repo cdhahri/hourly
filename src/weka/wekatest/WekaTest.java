@@ -12,7 +12,9 @@ import weka.core.Instances;
 public class WekaTest {
  
     public static void main(String[] args) throws Exception {
-        File dir = new File("/Users/chaima/dev/hourly/data/osn-data/features_step3/aggregated/weka");
+        File dir = 
+        new File("/Users/chaima/dev/hourly/src/new/osn-data/tweets_selected/features_step3/aggregated/weka");
+//        new File("/Users/chaima/dev/hourly/src/new/osn-data/tweets_selected__negative_are_features/features_step3/aggregated/weka");
         for (File file : dir.listFiles()) {
           if (file.getName().equals("all.csv")) {
             continue;
