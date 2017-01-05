@@ -15,7 +15,11 @@ def process(r, w):
       ok = False
     if ok:
       out = {}
+      first_line = True
       for row in csv_reader:
+        if first_line:
+          first_line = False
+          continue
         out[row[2]] = [row[0], row[1]]
 
   import json

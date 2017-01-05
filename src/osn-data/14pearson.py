@@ -49,7 +49,7 @@ for user_id in ids:
   hashtags_count = stats.zscore(hashtags_count).tolist()
   hashtags_count_pearson = pearsonr(target, hashtags_count)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(hashtags_count_pearson[0]) > percentage and abs(hashtags_count_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -61,7 +61,7 @@ for user_id in ids:
   mentions_count = stats.zscore(mentions_count).tolist()
   mentions_count_pearson = pearsonr(target, mentions_count)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(mentions_count_pearson[0]) > percentage and abs(mentions_count_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -73,7 +73,7 @@ for user_id in ids:
   favourites_count = stats.zscore(favourites_count).tolist()
   favourites_count_pearson = pearsonr(target, favourites_count)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(favourites_count_pearson[0]) > percentage and abs(favourites_count_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -85,7 +85,7 @@ for user_id in ids:
   media_count = stats.zscore(media_count).tolist()
   media_count_pearson = pearsonr(target, media_count)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(media_count_pearson[0]) > percentage and abs(media_count_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -99,7 +99,7 @@ for user_id in ids:
   source = stats.zscore(source).tolist()
   source_pearson = pearsonr(target, source)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(source_pearson[0]) > percentage and abs(source_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -111,7 +111,7 @@ for user_id in ids:
   week = stats.zscore(week).tolist()
   week_pearson = pearsonr(target, week)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(week_pearson[0]) > percentage and abs(week_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -125,7 +125,7 @@ for user_id in ids:
   day_night = stats.zscore(day_night).tolist()
   day_night_pearson = pearsonr(target, day_night)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(day_night_pearson[0]) > percentage and abs(day_night_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -139,7 +139,7 @@ for user_id in ids:
   active_passive = stats.zscore(active_passive).tolist()
   active_passive_pearson = pearsonr(target, active_passive)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(active_passive_pearson[0]) > percentage and abs(active_passive_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -162,7 +162,7 @@ for user_id in ids:
   mentions_mentions = stats.zscore(mentions_mentions).tolist()
   mentions_pearson = pearsonr(target_mentions, mentions_mentions)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(mentions_pearson[0]) > percentage and abs(mentions_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -184,7 +184,7 @@ for user_id in ids:
   coordinates_coordinates = stats.zscore(coordinates_coordinates).tolist()
   coordinates_pearson = pearsonr(target_coordinates, coordinates_coordinates)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(coordinates_pearson[0]) > percentage and abs(coordinates_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)
@@ -207,7 +207,7 @@ for user_id in ids:
   top_mentions_mentions = stats.zscore(top_mentions_mentions).tolist()
   top_mentions_pearson = pearsonr(target_top_mentions, top_mentions_mentions)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
-  for percentage in [0.3]:
+  for percentage in [0.5]:
     if abs(top_mentions_pearson[0]) > percentage and abs(top_mentions_pearson[1]) < 0.01:
 #      print(percentage)
       print(user_id)

@@ -10,4 +10,12 @@ src/search_tweets/*json
 tmp/
 data/osn-data/features_step*
 data/osn-data/tweets
+data/osn-data/tweets.tar.gz
+data/osn-data/tweets_next
+data/osn-data/tweets_selected
+data/osn-data/tweets_selected.tar.gz
 data/osn-data/venues
+src/new/osn-data/tweets_raw
+src/new/osn-data/tweets_raw.tar.gz
+src/osn-data/next_day/data
+src/twitter/favorites

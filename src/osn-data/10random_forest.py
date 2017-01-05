@@ -11,9 +11,6 @@ from sklearn.ensemble import RandomForestClassifier
 rfc = RandomForestClassifier()
 rfc.fit(features, target)
 
-with open('/vagrant/data/osn-data/ids.json', 'r') as file:
-  ids = json.load(file)
-
 def process(r, w):
   with open(r, 'r') as file:
     test = json.load(file)
@@ -31,21 +28,12 @@ def process(r, w):
   with open(w, 'w') as file:
     json.dump(target_predicted_json, file)
 
+with open('/vagrant/data/osn-data/ids.json', 'r') as file:
+  ids = json.load(file)
+
 for user_id in ids:
   r = '/vagrant/data/osn-data/features_step1/{}features.json'.format(user_id)
-  w = '/vagrant/data/osn-data/features_step1/{}target.json'.format(user_id)
+  #w = '/vagrant/data/osn-data/features_step1/{}target_tweets.json'.format(user_id)
+  #w = '/vagrant/data/osn-data/features_step1/{}target_tweets_selected.json'.format(user_id)
+  w = '/vagrant/data/osn-data/features_step1/{}target_tweets_next.json'.format(user_id)
   process(r, w)
-
-'''
-path = '/vagrant/data/osn-data/tweets/mentions/past_tweets/csv'
-from os import listdir
-from os.path import isfile, join
-files = [f for f in listdir(path) if isfile(join(path, f)) and f.endswith('.csv')]
-
-for f in files:
-  import re
-  user_id = re.search('^(.*)\.csv$', f).group(1)
-  r = '/vagrant/data/osn-data/features_step1/mentions/past_tweets/{}features.json'.format(user_id)
-  w = '/vagrant/data/osn-data/features_step1/mentions/past_tweets/{}target.json'.format(user_id)
-  process(r, w)
-'''
