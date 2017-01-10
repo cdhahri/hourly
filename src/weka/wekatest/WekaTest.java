@@ -1,25 +1,25 @@
 package wekatest;
 
 import java.io.File ;
+import java.util.ArrayList;
 import java.util.Random;
 
 import weka.classifiers.Evaluation;
+import weka.classifiers.evaluation.Prediction;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.trees.RandomForest;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.core.FastVector;
 import weka.core.Instances;
  
 public class WekaTest {
  
     public static void main(String[] args) throws Exception {
-        File dir = 
-        new File("../new/osn-data/tweets_selected/features_step3/aggregated/weka");
-//        new File("/Users/chaima/dev/hourly/src/new/osn-data/tweets_selected__negative_are_features/features_step3/aggregated/weka");
+        File dir = new File("../new/osn-data/tweets_selected/features_step3/aggregated/weka");
         for (File file : dir.listFiles()) {
           if (file.getName().equals("all.csv")) {
             continue;
           }
-          System.out.println(file.getName());
           DataSource source = new DataSource(file.getAbsolutePath());
           Instances data = source.getDataSet();
           data.setClassIndex(data.numAttributes() - 1);
@@ -30,8 +30,18 @@ public class WekaTest {
           } catch(IllegalArgumentException ignored) {
             continue;
           }
+          System.out.println(file.getName());
           System.out.println(evaluation.toSummaryString("\nResults\n======\n", true));
-          //System.out.println(evaluation.rootMeanSquaredError());
+/*
+          ArrayList<Prediction> predictions = evaluation.predictions();
+          String actual = String.format("%f", predictions.get(0).actual());
+          String predicted = String.format("%f", predictions.get(0).predicted());
+          for (int i = 1; i < predictions.size(); i++) {
+            actual = String.format("%s, %f", actual, predictions.get(i).actual());
+            predicted = String.format("%s, %f", predicted, predictions.get(i).predicted());
+          }
+          System.out.println(String.format("\"%s\":{\"actual\":[%s],\"predicted\":[%s]},",file.getName(), actual, predicted));
+*/
       }
     }
 }

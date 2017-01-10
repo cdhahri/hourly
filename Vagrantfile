@@ -48,6 +48,8 @@ wget http://sentistrength.wlv.ac.uk/SentiStrengthCom.jar
 wget http://sentistrength.wlv.ac.uk/SentStrength_Data_Sept2011.zip
 # java -jar SentiStrengthCom.jar sentidata ./db/ text love+u
 # java -jar SentiStrengthCom.jar sentidata ./db/ input input.txt
+
+sudo pip install matplotlib
 SCRIPT
 
 Vagrant.configure("2") do |default|

@@ -1,16 +1,5 @@
 #!/usr/bin/python3
 
-days = {
-  'Mon': 1,
-  'Tue': 1,
-  'Wed': 1,
-  'Thu': 1,
-  'Fri': 1,
-  'Sat': 2,
-  'Sun': 2,
-  'NOVAL': -1
-}
-
 import json
 
 with open('../ids.json', 'r') as file:
@@ -32,8 +21,7 @@ for user_id in ids:
     # Fri Feb 28 18:30:34 +0000 2014
     import re
     m = re.search('^.*(\d\d):\d\d:\d\d.*$', tweet['created_at'])
-    day = m.group(1)
-    feature.append(day)
+    feature.append(m.group(1))
 
   with open(w, 'w') as file:
     json.dump(feature, file)

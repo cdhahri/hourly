@@ -8,7 +8,6 @@ days = {
   'Fri': 1,
   'Sat': 2,
   'Sun': 2,
-  'NOVAL': -1
 }
 
 import json

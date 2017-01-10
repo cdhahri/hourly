@@ -13,16 +13,23 @@ def process(r, targets_path, selected_days_path, w):
   with open(selected_days_path, 'r') as file:
     selected_days = json.load(file)
 
+  sources = {
+    '<a href="http://foursquare.com" rel="nofollow">Foursquare</a>':None,
+    '<a href="http://instagram.com" rel="nofollow">Instagram</a>':None
+  }
+
   out = {}
   i = -1
   for key in sorted(tweets.keys()):
     i += 1
+    if tweets[key]['source'] in sources:
+      continue
     # Tue Sep 27 01:58:41 +0000 2016
     current_day = tweets[key]['created_at']
     current_day_object = datetime.strptime(current_day, '%a %b %d %H:%M:%S %z %Y')
-    previous_day_object = current_day_object - timedelta(days=1)
+    #previous_day_object = current_day_object - timedelta(days=1)
     #previous_day = '{0:%Y-%b-%d}'.format(previous_day_object)
-    previous_day = '{0:%Y-%b-%d}'.format(current_day_object)
+    previous_day = '{0:%Y-%m-%d}'.format(current_day_object)
     if previous_day in selected_days:
       if previous_day not in out:
         out[previous_day] = []

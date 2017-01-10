@@ -25,13 +25,19 @@ for user_id in ids:
   with open('./tweets_selected/features_step1/{}target.json'.format(user_id), 'r') as file:
     targets = json.load(file)
 
+  with open('./tweets_selected/features_step1/{}target_current.json'.format(user_id), 'r') as file:
+    targets_current = json.load(file)
+
   byday = {}
   i = -1
   for key in sorted(targets.keys()):
     i += 1
+    if key not in targets_current:
+      continue
     if key not in byday:
       byday[key] = {
-        '_target':[],
+        '_target':targets[key],
+        '_target_current':targets_current[key],
         'hashtags_count':[],
         'mentions_count':[],
         'favourites_count':[],
@@ -45,6 +51,7 @@ for user_id in ids:
         'top_mentions_day':[],
       }
     byday[key]['_target'] = targets[key]
+    byday[key]['_target_current'] = targets_current[key]
 
   #
   #
@@ -97,7 +104,7 @@ for user_id in ids:
     current_day = tweet['created_at']
     current_day_object = datetime.strptime(current_day, '%a %b %d %H:%M:%S %z %Y')
     next_day_object = current_day_object + timedelta(days=1)
-    key = '{0:%Y-%b-%d}'.format(next_day_object)
+    key = '{0:%Y-%m-%d}'.format(next_day_object)
 
     if key not in byday:
       continue

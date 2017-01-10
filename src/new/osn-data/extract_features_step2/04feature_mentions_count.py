@@ -16,10 +16,10 @@ for user_id in ids:
   for key in sorted(tweets_hash.keys()):
     tweets.append(tweets_hash[key])
 
-  hashtags = []
+  feature = []
   for tweet in tweets:
     count = len(tweet['entities']['user_mentions'])
-    hashtags.append(count)
+    feature.append(count)
 
   with open(w, 'w') as file:
-    json.dump(hashtags, file)
+    json.dump(feature, file)
