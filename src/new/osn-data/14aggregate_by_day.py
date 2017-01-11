@@ -32,10 +32,10 @@ for user_id in ids:
     neg = target.count('0')
     target = pos / (pos + neg)
 
-    target_current = day['_target_current']
-    pos = target_current.count('4')
-    neg = target_current.count('0')
-    target_current = pos / (pos + neg)
+#    target_current = day['_target_current']
+#    pos = target_current.count('4')
+#    neg = target_current.count('0')
+#    target_current = pos / (pos + neg)
 
     hashtags_count = day['hashtags_count']
     hashtags_count = sum(hashtags_count)
@@ -132,7 +132,7 @@ for user_id in ids:
 
     byday_aggregated[key] = {
       '_target':target,
-      '_target_current':target_current,
+#      '_target_current':target_current,
       'hashtags_count':hashtags_count,
       'mentions_count':mentions_count,
       'favourites_count':favourites_count,

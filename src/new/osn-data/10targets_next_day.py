@@ -13,6 +13,21 @@ def process(r, targets_path, selected_days_path, w):
   with open(selected_days_path, 'r') as file:
     selected_days = json.load(file)
 
+  '''
+  print(len(selected_days.keys()))
+  import random
+  length = int(len(selected_days.keys()) / 2 + len(selected_days.keys()) / 4 + len(selected_days.keys()) / 8)
+  while True:
+    if length == 0:
+      break
+    for key in selected_days.keys():
+      del selected_days[key]
+      break
+    length -= 1
+  print(len(selected_days.keys()))
+  print('')
+  '''
+
   sources = {
     '<a href="http://foursquare.com" rel="nofollow">Foursquare</a>':None,
     '<a href="http://instagram.com" rel="nofollow">Instagram</a>':None
