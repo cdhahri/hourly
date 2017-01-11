@@ -19,3 +19,5 @@ src/new/osn-data/tweets_raw
 src/new/osn-data/tweets_raw.tar.gz
 src/osn-data/next_day/data
 src/twitter/favorites
+*.DS_Store
+src/new/osn-data/tweets_selected*
