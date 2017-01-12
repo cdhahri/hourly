@@ -3,13 +3,7 @@
 import json
 from datetime import datetime, timedelta
         
-def process(r, selected_days_path, w):
-  with open(r, 'r') as file:
-    tweets = json.load(file)
-
-  with open(selected_days_path, 'r') as file:
-    selected_days = json.load(file)
-
+def process(tweets, selected_days, w):
   out = {}
   i = -1
   for key in sorted(tweets.keys()):
@@ -27,8 +21,30 @@ def process(r, selected_days_path, w):
 with open('./ids.json', 'r') as file:
   ids = json.load(file)
   
+percentages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 for user_id in ids:
+  print(user_id)
+
   r = './tweets_raw/{}.json'.format(user_id)
   selected_days_path = './tweets_selected/days/{}.json'.format(user_id)
-  w = './tweets_selected/{}.json'.format(user_id)
-  process(r, selected_days_path, w)
+
+  with open(r, 'r') as file:
+    tweets = json.load(file)
+  with open(selected_days_path, 'r') as file:
+    selected_days = json.load(file)
+
+  for percentage in percentages:
+    print(percentage / 10)
+
+    length = int((percentage/10)*(len(selected_days.keys())))
+    selected_days_subset = {}
+    i = -1
+    for key in sorted(selected_days.keys()):
+      i += 1
+      if i == length:
+        break
+      selected_days_subset[key] = selected_days[key]
+
+    w = './tweets_selected/{}/{}.json'.format(percentage, user_id)
+    process(tweets, selected_days_subset, w)

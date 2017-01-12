@@ -1,54 +1,28 @@
 #!/usr/bin/python3
 
+#sources = {
+#  '<a href="http://foursquare.com" rel="nofollow">Foursquare</a>':None,
+#  '<a href="http://instagram.com" rel="nofollow">Instagram</a>':None
+#}
+
 import json
 from datetime import datetime, timedelta
         
-def process(r, targets_path, selected_days_path, w):
-  with open(r, 'r') as file:
-    tweets = json.load(file)
-
-  with open(targets_path, 'r') as file:
-    targets = json.load(file)
-
-  with open(selected_days_path, 'r') as file:
-    selected_days = json.load(file)
-
-  '''
-  print(len(selected_days.keys()))
-  import random
-  length = int(len(selected_days.keys()) / 2 + len(selected_days.keys()) / 4 + len(selected_days.keys()) / 8)
-  while True:
-    if length == 0:
-      break
-    for key in selected_days.keys():
-      del selected_days[key]
-      break
-    length -= 1
-  print(len(selected_days.keys()))
-  print('')
-  '''
-
-  sources = {
-    '<a href="http://foursquare.com" rel="nofollow">Foursquare</a>':None,
-    '<a href="http://instagram.com" rel="nofollow">Instagram</a>':None
-  }
-
+def process(tweets, targets, selected_days, w):
   out = {}
   i = -1
   for key in sorted(tweets.keys()):
     i += 1
-    if tweets[key]['source'] in sources:
-      continue
+#    if tweets[key]['source'] in sources:
+#      continue
     # Tue Sep 27 01:58:41 +0000 2016
     current_day = tweets[key]['created_at']
     current_day_object = datetime.strptime(current_day, '%a %b %d %H:%M:%S %z %Y')
-    #previous_day_object = current_day_object - timedelta(days=1)
-    #previous_day = '{0:%Y-%b-%d}'.format(previous_day_object)
-    previous_day = '{0:%Y-%m-%d}'.format(current_day_object)
-    if previous_day in selected_days:
-      if previous_day not in out:
-        out[previous_day] = []
-      out[previous_day].append(targets[i])
+    current_day = '{0:%Y-%m-%d}'.format(current_day_object)
+    if current_day in selected_days:
+      if current_day not in out:
+        out[current_day] = []
+      out[current_day].append(targets[i])
 
   with open(w, 'w') as file:
     json.dump(out, file, sort_keys=True)
@@ -56,9 +30,32 @@ def process(r, targets_path, selected_days_path, w):
 with open('./ids.json', 'r') as file:
   ids = json.load(file)
   
+percentages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 for user_id in ids:
+  print(user_id)
+
   r = './tweets_raw/{}.json'.format(user_id)
   targets_path = './tweets_raw/features_step1/{}target.json'.format(user_id)
   selected_days_path = './tweets_selected/days/{}.json'.format(user_id)
-  w = './tweets_selected/features_step1/{}target.json'.format(user_id)
-  process(r, targets_path, selected_days_path, w)
+
+  with open(r, 'r') as file:
+    tweets = json.load(file)
+  with open(targets_path, 'r') as file:
+    targets = json.load(file)
+  with open(selected_days_path, 'r') as file:
+    selected_days = json.load(file)
+
+  for percentage in percentages:
+    print(percentage / 10)
+    length = int((percentage/10)*(len(selected_days.keys())))
+    selected_days_subset = {}
+    i = -1
+    for key in sorted(selected_days.keys()):
+      i += 1
+      if i == length:
+        break
+      selected_days_subset[key] = selected_days[key]
+
+    w = './tweets_selected/features_step1/{}/{}target.json'.format(percentage, user_id)
+    process(tweets, targets, selected_days_subset, w)

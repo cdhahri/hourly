@@ -19,7 +19,8 @@ def process(r, target_path, w):
   i = -1
   for key in sorted(tweets.keys()):
     i += 1
-    if targets[i] == '0' and tweets[key]['source'] not in sources:
+#    if targets[i] == '0' and tweets[key]['source'] not in sources:
+    if targets[i] == '0':
       # Tue Sep 27 01:58:41 +0000 2016
       current_day = tweets[key]['created_at']
       current_day_object = datetime.strptime(current_day, '%a %b %d %H:%M:%S %z %Y')

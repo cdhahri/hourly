@@ -21,3 +21,4 @@ src/osn-data/next_day/data
 src/twitter/favorites
 *.DS_Store
 src/new/osn-data/tweets_selected*
+src/new/osn-data/plots/
