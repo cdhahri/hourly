@@ -31,10 +31,9 @@ with open('./ids.json', 'r') as file:
   ids = json.load(file)
   
 percentages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+percentages = [10]
 
 for user_id in ids:
-  print(user_id)
-
   r = './tweets_raw/{}.json'.format(user_id)
   targets_path = './tweets_raw/features_step1/{}target.json'.format(user_id)
   selected_days_path = './tweets_selected/days/{}.json'.format(user_id)
@@ -47,7 +46,6 @@ for user_id in ids:
     selected_days = json.load(file)
 
   for percentage in percentages:
-    print(percentage / 10)
     length = int((percentage/10)*(len(selected_days.keys())))
     selected_days_subset = {}
     i = -1

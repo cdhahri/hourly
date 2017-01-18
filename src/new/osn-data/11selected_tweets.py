@@ -22,7 +22,7 @@ with open('./ids.json', 'r') as file:
   ids = json.load(file)
   
 percentages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
+percentages = [10]
 for user_id in ids:
   print(user_id)
 

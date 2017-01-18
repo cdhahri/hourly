@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 percentages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+percentages = [10]
 
 month = {
  'Jan': '01',
