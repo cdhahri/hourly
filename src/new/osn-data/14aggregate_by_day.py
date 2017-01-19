@@ -11,9 +11,7 @@ with open('./ids.json', 'r') as file:
   ids = json.load(file)
 
 for user_id in ids:
-  print(user_id)
   for percentage in percentages:
-    print(percentage / 10)
     r = './tweets_selected/features_step3/{}/{}.json'.format(percentage, user_id)
     w = './tweets_selected/features_step3/aggregated/{}/{}.json'.format(percentage, user_id)
 

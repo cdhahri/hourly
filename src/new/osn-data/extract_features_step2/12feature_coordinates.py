@@ -13,10 +13,7 @@ with open('../ids.json', 'r') as file:
 #  category_coordinates = json.load(file)
 
 for user_id in ids:
-  print(user_id)
   for percentage in percentages:
-    print(percentage / 10)
-
     r = '../tweets_selected/{}/{}.json'.format(percentage, user_id)
     w = '../tweets_selected/features_step2/{}/{}coordinates.json'.format(percentage, user_id)
 
