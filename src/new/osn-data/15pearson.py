@@ -7,8 +7,6 @@ from scipy import stats
 with open('./ids.json', 'r') as file:
   ids = json.load(file)
 
-ids = [10045092, 101496212, 1021239846, 102464379, 103114245, 103695733, 104852013, 10521002, 106104712, 108944858, 109223169, 10929372, 109485267, 111178547, 11126582, 111454868, 112490071, 112858627, 11312992, 113441429, 11346942, 11437162, 115138473, 11661442, 117562901, 117567036, 1177083624, 11778632, 117870724, 117987103, 118459389, 118474054, 119436439, 119773854, 119979433, 120268489, 12091872, 121768977, 1231465759, 1236198937, 124849194, 12584222, 1260994465, 1262051, 12681982, 12736092, 12865902, 129720477, 1297731522, 132191278, 13234182, 133165344, 133794989, 13460112, 13630552, 1371201120, 137123695, 13746182, 13833982, 13955342, 14000592, 14052274, 14238085, 142406505, 14262523, 142683977, 14311409, 14326247, 14329827, 14341596, 14353656, 14372827, 14506340, 14558776, 14610613, 14683259, 14685524, 147029225, 14727300, 14760624, 14812945, 14863357, 14900774, 14901281, 1498798484, 15030109, 150693965, 15121058, 15136898, 15164780, 151742290, 151846979, 15227820, 15261709, 15295567, 15300227, 15307110, 15370082, 15412985, 15473636, 15479048, 15482020, 15526160, 15646009, 15676300, 15844952, 15941891, 15953674, 16059345, 16090559, 16097172, 16133557, 16188096, 16205956, 16242432, 16381466, 16427456, 16440181, 16516286, 16525053, 1652943942, 16539750, 16555706, 16561108, 16679947, 16721983, 16754274, 167544646, 168752747, 1690021310, 16925606, 169359222, 16983823, 1707284881, 17073407, 17264368, 17289508, 173246653, 17395031, 174727392, 17500378, 17611773, 17638843, 176684709, 17679900, 17781987, 178183112, 17850637, 17997140, 18034005, 18100387, 18107739, 18142778, 18162777, 18262261, 18342516, 18377613, 18467617, 186710373, 18671170, 18701575, 18727385, 18774603, 18802512, 18853460, 1886110453, 19051137, 19103074, 192285937, 19245592, 19257498, 19273553, 193047373, 193055620, 19429282, 194460357, 194844686, 1956601, 19640038, 19840174, 199082056, 19981283, 20022522, 20061458, 20071366, 20193817, 201991499, 20224255, 202401823, 20405425, 20540225, 20802652, 20910966, 20920548, 20993312, 21018190, 21051121, 21210758, 212732867, 21522245, 21551845, 215538575, 2155451028, 21572497, 21580279, 216242374, 21645721, 21668323, 21689878, 21690151, 21690682, 217243955, 21820444, 21841580, 218915630, 22020614, 22078595, 22087330, 220900238, 22097148, 22186481, 222793383, 22336264, 2235343141, 224119575, 22542076, 225671353, 2259666550, 22653653, 22674525, 22738480, 22804043, 22835967, 22884262, 229191240, 23118244, 231435258, 231850668, 23474226, 234838196, 2361416437, 23645346, 23957246, 24071954, 2421127980, 24272045, 2431492819, 24637189, 24656873, 247140396, 248969328, 24916659, 25023487, 251801850, 25298225, 25338634, 253608676, 25519141, 255570795, 25772199, 25794087, 2587937208, 260309594, 261096069, 26110977, 26111925, 26412887, 26598221, 27015204, 270542169, 271549247, 272932351, 27312014, 27328412, 275419943, 27560087, 276363610, 27723901, 27797696, 27817688, 27906446, 28035489, 281800166, 281987255, 28207983, 28258368, 282618471, 28359041, 28388270, 2840628328, 284867370, 28503503, 285877073, 28667128, 28744549, 28773485, 2885653782, 2900512275, 29046663, 292121179, 29263484, 294149843, 29548394, 296954894, 2971829547, 29838696, 29873471, 29892110, 299315760, 29934475, 30133362, 30226543, 30298440, 30347402, 30576990, 306246651, 31159879, 314424424, 314615930, 31555593, 32251134, 32549410, 329359116, 33506364, 33552718, 33667217, 3394771, 34071208, 34415580, 348307387, 348356792, 351333010, 35135168, 35170409, 352061150, 35415893, 354899850, 35637918, 35704124, 3582641, 362355201, 36432077, 365077428, 367939756, 37222902, 37491523, 381280010, 381671017, 38249510, 38364927, 385525679, 391740160, 391780847, 392894053, 39316272, 39487901, 39944028, 403046769, 406171575, 40687730, 4080133834, 409530974, 41043058, 41097402, 41416430, 419411767, 42074324, 42680864, 430100347, 433995523, 43787354, 43893817, 44318556, 44363833, 44536674, 46328692, 4655791161, 47011143, 471669821, 47332084, 47473194, 47505761, 476016333, 48404991, 48522285, 49578698, 49698488, 50281618, 51355424, 521091861, 52418570, 525324664, 52733565, 531084450, 54463831, 54991079, 5565592, 56597284, 566866170, 56784216, 57043688, 57730432, 578435610, 58652731, 59673118, 59699232, 5976352, 59809965, 59947676, 60061084, 60234593, 608315409, 61532534, 61879870, 622391163, 625299965, 62743668, 630768670, 631406811, 6314782, 63191823, 63550078, 64375952, 65647574, 65688198, 65869518, 65946149, 66576457, 66833407, 71154429, 71422674, 71450773, 723615044, 73000498, 734303, 7373072, 738786882, 74558431, 754714, 76024450, 76253342, 770922379, 77147750, 77203118, 7827172, 78503065, 78705018, 790517, 791125, 794330748, 79684030, 8030212, 803282582, 812208710, 820607167, 827297707, 83170594, 8395322, 84138140, 85419044, 8546332, 86228984, 874316941, 87967892, 89608638, 902226338, 91165750, 9131442, 92623, 927771, 92819377, 95037009, 950435090, 9644892, 98119947, 99586796]
-
 total = 0
 total_hashtags_count = 0
 total_mentions_count = 0
@@ -55,6 +53,15 @@ for user_id in ids:
   mentions = []
   coordinates = []
   top_mentions = []
+
+  count_all_capital = []
+  count_exclamation_mark = []
+  count_question_mark = []
+  count_negative_word = []
+  count_positive_word = []
+  exist_more_than_three_dots = []
+  exist_more_than_three_vowels = []
+
   for key in sorted(byday_aggregated.keys()):
     target.append(byday_aggregated[key]['_target'])
     hashtags_count.append(byday_aggregated[key]['hashtags_count'])
@@ -68,6 +75,14 @@ for user_id in ids:
     mentions.append(byday_aggregated[key]['mentions'])
     coordinates.append(byday_aggregated[key]['coordinates'])
     top_mentions.append(byday_aggregated[key]['top_mentions'])
+
+    count_all_capital.append(byday_aggregated[key]['count_all_capital'])
+    count_exclamation_mark.append(byday_aggregated[key]['count_exclamation_mark'])
+    count_question_mark.append(byday_aggregated[key]['count_question_mark'])
+    count_negative_word.append(byday_aggregated[key]['count_negative_word'])
+    count_positive_word.append(byday_aggregated[key]['count_positive_word'])
+    exist_more_than_three_dots.append(byday_aggregated[key]['exist_more_than_three_dots'])
+    exist_more_than_three_vowels.append(byday_aggregated[key]['exist_more_than_three_vowels'])
 
   if len(set(target)) < 2:
     continue
@@ -266,6 +281,107 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(top_mentions_pearson[0]))
 #    print('@{}'.format(top_mentions_pearson[1]))
+  #'''
+
+
+
+
+  #'''
+  count_all_capital = stats.zscore(count_all_capital).tolist()
+  count_all_capital_pearson = pearsonr(target, count_all_capital)
+#  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+  for percentage in [0.3]:
+    if abs(count_all_capital_pearson[0]) > percentage and abs(count_all_capital_pearson[1]) < 0.05:
+#      count_all_capital_pearsons.append(abs(count_all_capital_pearson[0]))
+#      total_hashtags_count += 1
+#      print(percentage)
+      print(user_id)
+#    print('@{}'.format(hashtags_count_pearson[0]))
+#    print('@{}'.format(hashtags_count_pearson[1]))
+  #'''
+
+  #'''
+  count_exclamation_mark = stats.zscore(count_exclamation_mark).tolist()
+  count_exclamation_mark_pearson = pearsonr(target, count_exclamation_mark)
+#  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+  for percentage in [0.3]:
+    if abs(count_exclamation_mark_pearson[0]) > percentage and abs(count_exclamation_mark_pearson[1]) < 0.05:
+#      count_all_capital_pearsons.append(abs(count_all_capital_pearson[0]))
+#      total_hashtags_count += 1
+#      print(percentage)
+      print(user_id)
+#    print('@{}'.format(hashtags_count_pearson[0]))
+#    print('@{}'.format(hashtags_count_pearson[1]))
+  #'''
+
+  #'''
+  count_question_mark = stats.zscore(count_question_mark).tolist()
+  count_question_mark_pearson = pearsonr(target, count_question_mark)
+#  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+  for percentage in [0.3]:
+    if abs(count_question_mark_pearson[0]) > percentage and abs(count_question_mark_pearson[1]) < 0.05:
+#      count_all_capital_pearsons.append(abs(count_all_capital_pearson[0]))
+#      total_hashtags_count += 1
+#      print(percentage)
+      print(user_id)
+#    print('@{}'.format(hashtags_count_pearson[0]))
+#    print('@{}'.format(hashtags_count_pearson[1]))
+  #'''
+
+  #'''
+  count_negative_word = stats.zscore(count_negative_word).tolist()
+  count_negative_word_pearson = pearsonr(target, count_negative_word)
+#  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+  for percentage in [0.3]:
+    if abs(count_negative_word_pearson[0]) > percentage and abs(count_negative_word_pearson[1]) < 0.05:
+#      count_all_capital_pearsons.append(abs(count_all_capital_pearson[0]))
+#      total_hashtags_count += 1
+#      print(percentage)
+      print(user_id)
+#    print('@{}'.format(hashtags_count_pearson[0]))
+#    print('@{}'.format(hashtags_count_pearson[1]))
+  #'''
+
+  #'''
+  count_positive_word = stats.zscore(count_positive_word).tolist()
+  count_positive_word_pearson = pearsonr(target, count_positive_word)
+#  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+  for percentage in [0.3]:
+    if abs(count_positive_word_pearson[0]) > percentage and abs(count_positive_word_pearson[1]) < 0.05:
+#      count_all_capital_pearsons.append(abs(count_all_capital_pearson[0]))
+#      total_hashtags_count += 1
+#      print(percentage)
+      print(user_id)
+#    print('@{}'.format(hashtags_count_pearson[0]))
+#    print('@{}'.format(hashtags_count_pearson[1]))
+  #'''
+
+  #'''
+  exist_more_than_three_dots = stats.zscore(exist_more_than_three_dots).tolist()
+  exist_more_than_three_dots_pearson = pearsonr(target, exist_more_than_three_dots)
+#  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+  for percentage in [0.3]:
+    if abs(exist_more_than_three_dots_pearson[0]) > percentage and abs(exist_more_than_three_dots_pearson[1]) < 0.05:
+#      count_all_capital_pearsons.append(abs(count_all_capital_pearson[0]))
+#      total_hashtags_count += 1
+#      print(percentage)
+      print(user_id)
+#    print('@{}'.format(hashtags_count_pearson[0]))
+#    print('@{}'.format(hashtags_count_pearson[1]))
+  #'''
+
+  #'''
+  exist_more_than_three_vowels = stats.zscore(exist_more_than_three_vowels).tolist()
+  exist_more_than_three_vowels_pearson = pearsonr(target, exist_more_than_three_vowels)
+#  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
+  for percentage in [0.3]:
+    if abs(exist_more_than_three_vowels_pearson[0]) > percentage and abs(exist_more_than_three_vowels_pearson[1]) < 0.05:
+#      count_all_capital_pearsons.append(abs(count_all_capital_pearson[0]))
+#      total_hashtags_count += 1
+#      print(percentage)
+      print(user_id)
+#    print('@{}'.format(hashtags_count_pearson[0]))
+#    print('@{}'.format(hashtags_count_pearson[1]))
   #'''
 
 '''

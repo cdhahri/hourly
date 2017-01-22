@@ -1,10 +1,5 @@
 #!/usr/bin/python3
 
-#sources = {
-#  '<a href="http://foursquare.com" rel="nofollow">Foursquare</a>':None,
-#  '<a href="http://instagram.com" rel="nofollow">Instagram</a>':None
-#}
-
 import json
 from datetime import datetime, timedelta
         

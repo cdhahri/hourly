@@ -51,6 +51,14 @@ for user_id in ids:
           'mentions':[],
           'coordinates':[],
           'top_mentions_day':[],
+
+          'count_all_capital':[],
+          'count_exclamation_mark':[],
+          'count_question_mark':[],
+          'count_negative_word':[],
+          'count_positive_word':[],
+          'exist_more_than_three_dots':[],
+          'exist_more_than_three_vowels':[],
         }
       byday[key]['_target'] = targets[key]
 #     byday[key]['_target_current'] = targets_current[key]
@@ -99,6 +107,29 @@ for user_id in ids:
     with open('./tweets_selected/features_step2/{}/{}coordinates.json'.format(percentage, user_id), 'r') as file:
       coordinates = json.load(file)
 
+
+
+    with open('./tweets_selected/features_step2/10/{}count_all_capital.json'.format(user_id), 'r') as file:
+      count_all_capital = json.load(file)
+
+    with open('./tweets_selected/features_step2/10/{}count_exclamation_mark.json'.format(user_id), 'r') as file:
+      count_exclamation_mark = json.load(file)
+
+    with open('./tweets_selected/features_step2/10/{}count_question_mark.json'.format(user_id), 'r') as file:
+      count_question_mark = json.load(file)
+
+    with open('./tweets_selected/features_step2/10/{}count_negative_word.json'.format(user_id), 'r') as file:
+      count_negative_word = json.load(file)
+
+    with open('./tweets_selected/features_step2/10/{}count_positive_word.json'.format(user_id), 'r') as file:
+      count_positive_word = json.load(file)
+
+    with open('./tweets_selected/features_step2/10/{}exist_more_than_three_dots.json'.format(user_id), 'r') as file:
+      exist_more_than_three_dots = json.load(file)
+
+    with open('./tweets_selected/features_step2/10/{}exist_more_than_three_vowels.json'.format(user_id), 'r') as file:
+      exist_more_than_three_vowels = json.load(file)
+
     i = -1
     for tweet in tweets:
       i += 1
@@ -125,6 +156,16 @@ for user_id in ids:
       byday[key]['mentions'].extend(mentions[i])
       byday[key]['coordinates'].append(coordinates[i])
       byday[key]['top_mentions'] = top_mentions_day
+
+
+      byday[key]['count_all_capital'].append(count_all_capital[i])
+      byday[key]['count_exclamation_mark'].append(count_exclamation_mark[i])
+      byday[key]['count_question_mark'].append(count_question_mark[i])
+      byday[key]['count_negative_word'].append(count_negative_word[i])
+      byday[key]['count_positive_word'].append(count_positive_word[i])
+      byday[key]['exist_more_than_three_dots'].append(exist_more_than_three_dots[i])
+      byday[key]['exist_more_than_three_vowels'].append(exist_more_than_three_vowels[i])
+
 
     with open('./tweets_selected/features_step3/{}/{}.json'.format(percentage, user_id), 'w') as file:
       json.dump(byday, file, sort_keys=True)

@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+sources = {
+  '<a href="http://foursquare.com" rel="nofollow">Foursquare</a>':None,
+  '<a href="http://instagram.com" rel="nofollow">Instagram</a>':None
+}
+
 import json
 from datetime import datetime, timedelta
         
@@ -12,7 +17,7 @@ def process(tweets, selected_days, w):
     current_day = tweets[key]['created_at']
     current_day_object = datetime.strptime(current_day, '%a %b %d %H:%M:%S %z %Y')
     next_day_object = current_day_object + timedelta(days=1)
-    if '{0:%Y-%m-%d}'.format(next_day_object) in selected_days:
+    if '{0:%Y-%m-%d}'.format(next_day_object) in selected_days and tweets[key]['source'] in sources:
       out[key] = tweets[key]
 
   with open(w, 'w') as file:

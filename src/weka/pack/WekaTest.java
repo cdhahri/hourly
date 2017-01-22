@@ -1,4 +1,4 @@
-package wekatest;
+package pack;
 
 import java.io.File ;
 import java.util.ArrayList;

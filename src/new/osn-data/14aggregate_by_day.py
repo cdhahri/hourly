@@ -127,6 +127,37 @@ for user_id in ids:
           auto_inc2[coordinate] = j
         coordinates_values.append(auto_inc2[coordinate])
 
+      count_all_capital = day['count_all_capital']
+      count_all_capital = sum(count_all_capital)
+
+      count_exclamation_mark = day['count_exclamation_mark']
+      count_exclamation_mark = sum(count_exclamation_mark)
+
+      count_question_mark = day['count_question_mark']
+      count_question_mark = sum(count_question_mark)
+
+      count_negative_word = day['count_negative_word']
+      count_negative_word = sum(count_negative_word)
+
+      count_positive_word = day['count_positive_word']
+      count_positive_word = sum(count_positive_word)
+
+      exist_more_than_three_dots = day['exist_more_than_three_dots']
+      exist = False
+      for item in exist_more_than_three_dots:
+        if item is True:
+          exist = True
+          break
+      exist_more_than_three_dots = exist
+
+      exist_more_than_three_vowels = day['exist_more_than_three_vowels']
+      exist = False
+      for item in exist_more_than_three_vowels:
+        if item is True:
+          exist = True
+          break
+      exist_more_than_three_vowels = exist
+
       byday_aggregated[key] = {
         '_target':target,
   #      '_target_current':target_current,
@@ -142,6 +173,14 @@ for user_id in ids:
   #      'tags':tags_values,
         'coordinates':coordinates_values,
         'top_mentions':top_mentions_values,
+
+        'count_all_capital':count_all_capital,
+        'count_exclamation_mark':count_exclamation_mark,
+        'count_question_mark':count_question_mark,
+        'count_negative_word':count_negative_word,
+        'count_positive_word':count_positive_word,
+        'exist_more_than_three_dots':exist_more_than_three_dots,
+        'exist_more_than_three_vowels':exist_more_than_three_vowels,
       }
 
     with open(w, 'w') as file:
