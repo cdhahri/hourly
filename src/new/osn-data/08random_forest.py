@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 
 import json
-with open('/vagrant/src/rf/data_tmp/train/features.json', 'r') as file:
+#with open('/vagrant/src/rf/data_tmp/train/features.json', 'r') as file:
+with open('/vagrant/src/classifier/data/06features.json', 'r') as file:
   features = json.load(file)
 
-with open('/vagrant/src/rf/data_tmp/train/target.json', 'r') as file:
+#with open('/vagrant/src/rf/data_tmp/train/target.json', 'r') as file:
+with open('/vagrant/src/classifier/data/07targets.json', 'r') as file:
   target = json.load(file)
 
 from sklearn.ensemble import RandomForestClassifier

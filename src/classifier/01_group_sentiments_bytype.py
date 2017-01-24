@@ -1,18 +1,18 @@
 #!/usr/bin/python
 
 sentiment_hash = {
-  "anger":-1,
-  "boredom":-1,
-  "empty":-1,
-  "enthusiasm":1,
-  "fun":1,
-  "happiness":1,
-  "hate":-1,
-  "love":1,
-  "neutral":0,
-  "relief":1,
-  "sadness":-1,
-  "worry":-1,
+  "anger":"-1",
+  "boredom":"-1",
+  "empty":"-1",
+  "enthusiasm":"1",
+  "fun":"1",
+  "happiness":"1",
+  "hate":"-1",
+  "love":"1",
+  "neutral":"0",
+  "relief":"1",
+  "sadness":"-1",
+  "worry":"-1",
 }
 
 import csv, json
