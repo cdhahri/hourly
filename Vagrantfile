@@ -37,6 +37,12 @@ sudo apt-get install -y tk-dev
 # before #include <tcl.h>
 # add #define USE_INTERP_RESULT 1
 # export PATH="${PATH}:/usr/local/WordNet-3.0/bin
+# export WORDNET_INSTALL=$(pwd)/WordNet-3.0
+# LDFLAGS=-L${WORDNET_INSTALL}/lib
+# LIBS=-lWN
+# gcc ${LDFLAGS} -c marouen.c -o marouen ${LIBS} 
+
+
 
 # machine learning
 sudo pip install numpy

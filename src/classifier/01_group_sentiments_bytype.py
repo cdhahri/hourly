@@ -9,7 +9,7 @@ sentiment_hash = {
   "happiness":"1",
   "hate":"-1",
   "love":"1",
-  "neutral":"0",
+#  "neutral":"0",
   "relief":"1",
   "sadness":"-1",
   "worry":"-1",

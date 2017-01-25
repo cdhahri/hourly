@@ -91,7 +91,7 @@ for user_id in ids:
 
 #  target = stats.zscore(target).tolist()
 
-  #'''
+#  '''
   hashtags_count = stats.zscore(hashtags_count).tolist()
   hashtags_count_pearson = pearsonr(target, hashtags_count)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -103,9 +103,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(hashtags_count_pearson[0]))
 #    print('@{}'.format(hashtags_count_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   mentions_count = stats.zscore(mentions_count).tolist()
   mentions_count_pearson = pearsonr(target, mentions_count)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -117,9 +117,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(mentions_count_pearson[0]))
 #    print('@{}'.format(mentions_count_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   favourites_count = stats.zscore(favourites_count).tolist()
   favourites_count_pearson = pearsonr(target, favourites_count)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -131,9 +131,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(favourites_count_pearson[0]))
 #    print('@{}'.format(favourites_count_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   media_count = stats.zscore(media_count).tolist()
   media_count_pearson = pearsonr(target, media_count)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -145,9 +145,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(media_count_pearson[0]))
 #    print('@{}'.format(media_count_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   if len(set(source)) < 2:
     continue
   source = stats.zscore(source).tolist()
@@ -161,9 +161,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(source_pearson[0]))
 #    print('@{}'.format(source_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   week = stats.zscore(week).tolist()
   week_pearson = pearsonr(target, week)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -175,9 +175,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(week_pearson[0]))
 #    print('@{}'.format(week_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   if len(set(day_night)) < 2:
     continue
   day_night = stats.zscore(day_night).tolist()
@@ -191,9 +191,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(active_passive_pearson[0]))
 #    print('@{}'.format(active_passive_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   if len(set(active_passive)) < 2:
     continue
   active_passive = stats.zscore(active_passive).tolist()
@@ -207,9 +207,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(active_passive_pearson[0]))
 #    print('@{}'.format(active_passive_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   target_mentions = []
   mentions_mentions = []
   for i in range(len(target)):
@@ -232,9 +232,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(mentions_pearson[0]))
 #    print('@{}'.format(mentions_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   target_coordinates = []
   coordinates_coordinates = []
   for i in range(len(target)):
@@ -256,9 +256,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(coordinates_pearson[0]))
 #    print('@{}'.format(coordinates_pearson[1]))
-  #'''
+#  '''
 
-  #'''
+#  '''
   target_top_mentions = []
   top_mentions_mentions = []
   for i in range(len(target)):
@@ -281,12 +281,12 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(top_mentions_pearson[0]))
 #    print('@{}'.format(top_mentions_pearson[1]))
-  #'''
+#  '''
 
 
 
 
-  #'''
+  '''
   count_all_capital = stats.zscore(count_all_capital).tolist()
   count_all_capital_pearson = pearsonr(target, count_all_capital)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -298,9 +298,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(hashtags_count_pearson[0]))
 #    print('@{}'.format(hashtags_count_pearson[1]))
-  #'''
+  '''
 
-  #'''
+  '''
   count_exclamation_mark = stats.zscore(count_exclamation_mark).tolist()
   count_exclamation_mark_pearson = pearsonr(target, count_exclamation_mark)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -312,9 +312,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(hashtags_count_pearson[0]))
 #    print('@{}'.format(hashtags_count_pearson[1]))
-  #'''
+  '''
 
-  #'''
+  '''
   count_question_mark = stats.zscore(count_question_mark).tolist()
   count_question_mark_pearson = pearsonr(target, count_question_mark)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -326,9 +326,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(hashtags_count_pearson[0]))
 #    print('@{}'.format(hashtags_count_pearson[1]))
-  #'''
+  '''
 
-  #'''
+  '''
   count_negative_word = stats.zscore(count_negative_word).tolist()
   count_negative_word_pearson = pearsonr(target, count_negative_word)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -340,9 +340,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(hashtags_count_pearson[0]))
 #    print('@{}'.format(hashtags_count_pearson[1]))
-  #'''
+  '''
 
-  #'''
+  '''
   count_positive_word = stats.zscore(count_positive_word).tolist()
   count_positive_word_pearson = pearsonr(target, count_positive_word)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -354,9 +354,9 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(hashtags_count_pearson[0]))
 #    print('@{}'.format(hashtags_count_pearson[1]))
-  #'''
+  '''
 
-  #'''
+  '''
   exist_more_than_three_dots = stats.zscore(exist_more_than_three_dots).tolist()
   exist_more_than_three_dots_pearson = pearsonr(target, exist_more_than_three_dots)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -370,7 +370,7 @@ for user_id in ids:
 #    print('@{}'.format(hashtags_count_pearson[1]))
   #'''
 
-  #'''
+  '''
   exist_more_than_three_vowels = stats.zscore(exist_more_than_three_vowels).tolist()
   exist_more_than_three_vowels_pearson = pearsonr(target, exist_more_than_three_vowels)
 #  for percentage in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:
@@ -382,7 +382,7 @@ for user_id in ids:
       print(user_id)
 #    print('@{}'.format(hashtags_count_pearson[0]))
 #    print('@{}'.format(hashtags_count_pearson[1]))
-  #'''
+  '''
 
 '''
 print('{}'.format(total_hashtags_count/total))
