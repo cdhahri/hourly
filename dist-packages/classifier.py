@@ -51,6 +51,11 @@ ignore = ['.', ',', ':', '#', '$', '(', ')', '\'\'', '``']
 
 import nltk
 import nltk.tokenize
+#from nltk.stem import WordNetLemmatizer
+from nltk.stem.lancaster import LancasterStemmer
+
+#wordnet_lemmatizer = WordNetLemmatizer()
+lancaster_stemmer = LancasterStemmer()
 
 def patterns(text_list):
   patterns = []
@@ -67,7 +72,11 @@ def patterns(text_list):
         pattern.append(hash_postag_expression[tag])
       elif tag in CI:
         # lemmatization
-        pattern.append(word)
+#        lemma = wordnet_lemmatizer.lemmatize(word)
+        # stemming
+        lemma = lancaster_stemmer.stem(word)
+        print(lemma)
+        pattern.append(lemma)
       elif tag in GFI:
         # look up
         pattern.append(hash_postag_expression[tag])
