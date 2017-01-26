@@ -42,7 +42,8 @@ sudo apt-get install -y tk-dev
 # LIBS=-lWN
 # gcc ${LDFLAGS} -c marouen.c -o marouen ${LIBS} 
 
-
+# nltk
+#python -m nltk.downloader all
 
 # machine learning
 sudo pip install numpy

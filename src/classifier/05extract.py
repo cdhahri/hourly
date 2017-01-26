@@ -11,6 +11,16 @@ with open('./data/05words.json', 'r') as file:
 features = []
 targets = []
 
+# pattern-based features
+text_list = []
+for tweet in tweets:
+  text_list.append(tweet['text'])
+import classifier
+patterns = classifier.patterns(text_list)
+
+import sys
+sys.exit(1)
+
 for tweet in tweets:
   text = tweet['text']
   words = text.split()
