@@ -51,13 +51,11 @@ ignore = ['.', ',', ':', '#', '$', '(', ')', '\'\'', '``']
 
 import nltk
 import nltk.tokenize
-#from nltk.stem import WordNetLemmatizer
-from nltk.stem.lancaster import LancasterStemmer
+from nltk.stem import WordNetLemmatizer
 
-#wordnet_lemmatizer = WordNetLemmatizer()
-lancaster_stemmer = LancasterStemmer()
+wordnet_lemmatizer = WordNetLemmatizer()
 
-def patterns(text_list):
+def patterns(text_list, senti_strength_words):
   patterns = []
   for text in text_list:
     pattern = []
@@ -67,18 +65,19 @@ def patterns(text_list):
       word = word_tag[0]
       tag = word_tag[1]
       if tag in EI:
-        # polarity with senti strength
-        # look up
-        pattern.append(hash_postag_expression[tag])
+        prefix = ''
+        if word in senti_strength_words:
+          pos = int(senti_strength_words[word][0])
+          neg = int(senti_strength_words[word][1])
+          if pos > abs(neg):
+            prefix = 'POS'
+          elif pos < abs(neg):
+            prefix = 'NEG'
+        pattern.append('{}{}'.format(prefix, hash_postag_expression[tag]))
       elif tag in CI:
-        # lemmatization
-#        lemma = wordnet_lemmatizer.lemmatize(word)
-        # stemming
-        lemma = lancaster_stemmer.stem(word)
-        print(lemma)
+        lemma = wordnet_lemmatizer.lemmatize(word)
         pattern.append(lemma)
       elif tag in GFI:
-        # look up
         pattern.append(hash_postag_expression[tag])
       elif tag in ignore:
         continue
@@ -87,4 +86,17 @@ def patterns(text_list):
         import sys
         sys.exit(1)
     patterns.append(pattern)
+
+  patterns_hash = {}
+  for pattern in patterns:
+    pattern2 = ' '.join(pattern)
+    if pattern2 not in patterns_hash:
+      patterns_hash[pattern2] = 0
+    patterns_hash[pattern2] = patterns_hash[pattern2] + 1
+
+  patterns = []
+  for key in sorted(patterns_hash.keys()):
+    if patterns_hash[key] > 1:
+      print('{}: {}'.format(key, patterns_hash[key]))
+      patterns.append(key)
   return patterns

@@ -16,7 +16,7 @@ text_list = []
 for tweet in tweets:
   text_list.append(tweet['text'])
 import classifier
-patterns = classifier.patterns(text_list)
+patterns = classifier.patterns(text_list, all_words)
 
 import sys
 sys.exit(1)

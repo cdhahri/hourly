@@ -13,16 +13,16 @@ for tweet in tweets:
     hashset[word] = None
 
 # clean
-keys_to_delete = []
-for key in sorted(hashset.keys()):
-  # remove hashtag from words
-  m = re.match('^#(.+)$', key)
-  if m is not None:
-    hashset[m.group(1)] = None
-    keys_to_delete.append(key)
+# keys_to_delete = []
+# for key in sorted(hashset.keys()):
+#   # remove hashtag from words
+#   m = re.match('^#(.+)$', key)
+#   if m is not None:
+#     hashset[m.group(1)] = None
+#     keys_to_delete.append(key)
 
-for key in keys_to_delete:
-  del hashset[key]
+# for key in keys_to_delete:
+#   del hashset[key]
 
 out = '\n'.join(sorted(hashset.keys()))
 
