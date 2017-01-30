@@ -1,3 +1,9 @@
+import nltk
+import nltk.tokenize
+from nltk.stem import WordNetLemmatizer
+
+wordnet_lemmatizer = WordNetLemmatizer()
+
 EI = ['JJ', 'JJR', 'JJS', 'NN', 'NNS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
 
 CI = ['CC', 'DT', 'EX', 'IN', 'MD', 'PDT', 'POS', 'RB', 'RBR', 'RBS', 'RP', 'TO', 'WDT', 'WP', 'WP$', 'WRB']
@@ -47,12 +53,6 @@ hash_postag_expression = {
 }
 
 ignore = ['.', ',', ':', '#', '$', '(', ')', '\'\'', '``']
-
-import nltk
-import nltk.tokenize
-from nltk.stem import WordNetLemmatizer
-
-wordnet_lemmatizer = WordNetLemmatizer()
 
 def extract_patterns(tweets, senti_strength_words):
     patterns = {
@@ -153,7 +153,7 @@ def delete_duplicates_accross_moods(patterns):
             del patterns['-1'][length][key]
             del patterns['1'][length][key]
 
-def extract_features(text, senti_strength_words, patterns):
+def extract_features(text, patterns, words):
     features = {
         '-1': {
             '3' : 0,
@@ -176,22 +176,57 @@ def extract_features(text, senti_strength_words, patterns):
             '10': 0
         }
     }
-    pattern = pattern_from_text(text, senti_strength_words)
+    pattern = pattern_from_text(text, words)
     sub_patterns = patterns_for_different_lengths(pattern)
     for sub_pattern in sub_patterns:
         length = str(len(sub_pattern))
         features['-1'][length] = similarity(sub_pattern, patterns['-1'][length])
-        features['-1'][length] = similarity(sub_pattern, patterns['-1'][length])
+        features['1'] [length] = similarity(sub_pattern, patterns['1'] [length])
     return features
 
 def similarity(sub_pattern, patterns):
     K = 5
+    length = len(sub_pattern)
+    beta = (length - 1) / (length + 1)
     similarities = []
-    for pattern in patterns:
-        similarities.append(similarity0(sub_pattern, pattern))
+    for pattern_str in patterns:
+        similarities.append(similarity0(sub_pattern, pattern_str))
     similarities.sort()
     similarities = similarities[0:K]
-    return mean(similarities)
+    return beta * sum(similarities)
 
-def similarity0(sub_pattern, pattern):
-    return 1
+def similarity0(sub_pattern, pattern_str):
+    sub_pattern_str = ' '.join(sub_pattern)
+    if sub_pattern_str is pattern_str:
+        return 1
+    pattern = pattern_str.split(' ')
+    if len(set.intersection(set(sub_pattern), set(pattern))) == 0:
+        return 0
+    alpha = 0.03
+    n = len(lcs(sub_pattern, pattern).split(' ')) - 1
+    N = len(sub_pattern)
+    return (alpha * n) / N
+
+def lcs(a, b):
+    lengths = [[0 for j in range(len(b)+1)] for i in range(len(a)+1)]
+    # row 0 and column 0 are initialized to 0 already
+    for i, x in enumerate(a):
+        for j, y in enumerate(b):
+            if x == y:
+                lengths[i+1][j+1] = lengths[i][j] + 1
+            else:
+                lengths[i+1][j+1] = max(lengths[i+1][j], lengths[i][j+1])
+    # read the substring out from the matrix
+    result = ""
+    x, y = len(a), len(b)
+    while x != 0 and y != 0:
+        if lengths[x][y] == lengths[x-1][y]:
+            x -= 1
+        elif lengths[x][y] == lengths[x][y-1]:
+            y -= 1
+        else:
+            assert a[x-1] == b[y-1]
+            result = a[x-1] + ' ' + result
+            x -= 1
+            y -= 1
+    return result

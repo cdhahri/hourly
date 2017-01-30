@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json, re
+import classifier
 
 with open('./data/02.json', 'r') as file:
   tweets = json.load(file)
@@ -8,18 +9,14 @@ with open('./data/02.json', 'r') as file:
 with open('./data/05words.json', 'r') as file:
   all_words = json.load(file)
 
+with open('./pattern_based/01patterns.json', 'r') as file:
+  patterns = json.load(file)
+
+with open('./pattern_based/02features.json', 'r') as file:
+  features_pattern_based_all = json.load(file)
+
 features = []
 targets = []
-
-# pattern-based features
-text_list = []
-for tweet in tweets:
-  text_list.append(tweet['text'])
-import classifier
-patterns = classifier.patterns(text_list, all_words)
-
-import sys
-sys.exit(1)
 
 for tweet in tweets:
   text = tweet['text']
@@ -27,6 +24,7 @@ for tweet in tweets:
 
   entry = []
 
+  # SENTIMENT BASED FEATURES
   # total score +
   total_pos = 0
   for word in words:
@@ -60,44 +58,34 @@ for tweet in tweets:
         num_neg += 1
   entry.append(num_neg)
 
+  # PUNCTUATION AND SYNTAX BASED FEATURES
   # count all capitals
   all_capital = 0
   for word in words:
     if len(word) > 3 and word.isupper():
       all_capital += 1
-  # entry.append(all_capital)
+  entry.append(all_capital)
 
   # exclamation mark
-  # entry.append(text.count('!'))
+  entry.append(text.count('!'))
 
   # question mark
-  # entry.append(text.count('?'))
-
-  # -
-  negative = 0
-  for word in words:
-    if word in all_words:
-      score = int(all_words[word][0]) + int(all_words[word][1])
-      if score < 0:
-        negative += 1
-  # entry.append(negative)
-
-  # +
-  positive = 0
-  for word in words:
-    if word in all_words:
-      score = int(all_words[word][0]) + int(all_words[word][1])
-      if score > 0:
-        positive += 1
-  # entry.append(positive)
+  entry.append(text.count('?'))
 
   # more than three dots
   m = re.search('^.*(\.){3,}.*$', text)
-  # entry.append(bool(m))
+  entry.append(bool(m))
 
   # more than three vowels
   m = re.search('^.*(a{3,}|i{3,}|u{3,}|e{3,}|o{3,}).*$', text)
-  # entry.append(bool(m))
+  entry.append(bool(m))
+
+  # PATTERN BASED FEATURES
+  features_pattern_based = features_pattern_based_all[text]
+  for i in range(3, 11):
+    length = str(i)
+    entry.append(features_pattern_based['-1'][length])
+    entry.append(features_pattern_based['1'][length])
 
   features.append(entry)
   targets.append(tweet['mood'])
