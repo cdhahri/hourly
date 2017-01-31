@@ -70,6 +70,6 @@ Vagrant.configure("2") do |default|
 
   default.vm.provider "virtualbox" do |vbox|
     vbox.name = "hourly"
-    vbox.memory = 1024
+    vbox.memory = 2048
   end
 end

@@ -24,7 +24,7 @@ for tweet in tweets:
     if text in features:
         print('WARN text previously added to hash')
     features[text] = f
-    if random.random() > 0.97:
+    if random.random() > 0.99:
         print('{}/{}'.format(i, f))
 
 with open('./data/07features.json', 'w') as file:
