@@ -54,6 +54,7 @@ for user_id in ids:
   coordinates = []
   top_mentions = []
 
+  '''
   count_all_capital = []
   count_exclamation_mark = []
   count_question_mark = []
@@ -61,6 +62,7 @@ for user_id in ids:
   count_positive_word = []
   exist_more_than_three_dots = []
   exist_more_than_three_vowels = []
+  '''
 
   for key in sorted(byday_aggregated.keys()):
     target.append(byday_aggregated[key]['_target'])
@@ -76,6 +78,7 @@ for user_id in ids:
     coordinates.append(byday_aggregated[key]['coordinates'])
     top_mentions.append(byday_aggregated[key]['top_mentions'])
 
+    '''
     count_all_capital.append(byday_aggregated[key]['count_all_capital'])
     count_exclamation_mark.append(byday_aggregated[key]['count_exclamation_mark'])
     count_question_mark.append(byday_aggregated[key]['count_question_mark'])
@@ -83,6 +86,7 @@ for user_id in ids:
     count_positive_word.append(byday_aggregated[key]['count_positive_word'])
     exist_more_than_three_dots.append(byday_aggregated[key]['exist_more_than_three_dots'])
     exist_more_than_three_vowels.append(byday_aggregated[key]['exist_more_than_three_vowels'])
+    '''
 
   if len(set(target)) < 2:
     continue

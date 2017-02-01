@@ -32,7 +32,7 @@ for user_id in ids:
       pos = target.count('1')
       neg = target.count('-1')
       #neu = target.count('0')
-      target = pos / (pos + neg)
+      target = (pos) / (pos + neg)
 
 #     target_current = day['_target_current']
 #     pos = target_current.count('4')

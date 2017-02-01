@@ -108,7 +108,6 @@ for user_id in ids:
       coordinates = json.load(file)
 
 
-
     with open('./tweets_selected/features_step2/10/{}count_all_capital.json'.format(user_id), 'r') as file:
       count_all_capital = json.load(file)
 
@@ -157,7 +156,6 @@ for user_id in ids:
       byday[key]['coordinates'].append(coordinates[i])
       byday[key]['top_mentions'] = top_mentions_day
 
-
       byday[key]['count_all_capital'].append(count_all_capital[i])
       byday[key]['count_exclamation_mark'].append(count_exclamation_mark[i])
       byday[key]['count_question_mark'].append(count_question_mark[i])
@@ -165,7 +163,6 @@ for user_id in ids:
       byday[key]['count_positive_word'].append(count_positive_word[i])
       byday[key]['exist_more_than_three_dots'].append(exist_more_than_three_dots[i])
       byday[key]['exist_more_than_three_vowels'].append(exist_more_than_three_vowels[i])
-
 
     with open('./tweets_selected/features_step3/{}/{}.json'.format(percentage, user_id), 'w') as file:
       json.dump(byday, file, sort_keys=True)
