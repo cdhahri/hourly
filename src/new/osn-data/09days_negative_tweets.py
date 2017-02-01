@@ -10,10 +10,10 @@ def process(r, target_path, w):
   with open(target_path, 'r') as file:
     targets = json.load(file)
 
-  sources = {
-    '<a href="http://foursquare.com" rel="nofollow">Foursquare</a>':None,
-    '<a href="http://instagram.com" rel="nofollow">Instagram</a>':None
-  }
+  # sources = {
+  #   '<a href="http://foursquare.com" rel="nofollow">Foursquare</a>':None,
+  #   '<a href="http://instagram.com" rel="nofollow">Instagram</a>':None
+  # }
 
   out = {}
   i = -1

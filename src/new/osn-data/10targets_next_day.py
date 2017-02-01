@@ -8,8 +8,6 @@ def process(tweets, targets, selected_days, w):
   i = -1
   for key in sorted(tweets.keys()):
     i += 1
-#    if tweets[key]['source'] in sources:
-#      continue
     if targets[i] == '0':
       continue
     # Tue Sep 27 01:58:41 +0000 2016

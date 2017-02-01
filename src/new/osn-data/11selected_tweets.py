@@ -14,7 +14,8 @@ def process(tweets, selected_days, targets, w):
   for key in sorted(tweets.keys()):
     i += 1
     # Tue Sep 27 01:58:41 +0000 2016
-    if targets[i] == '0':
+    # if targets[i] == '0':
+    if tweets[key]['source'] not in sources or targets[i] != '0':
       continue
     current_day = tweets[key]['created_at']
     current_day_object = datetime.strptime(current_day, '%a %b %d %H:%M:%S %z %Y')
