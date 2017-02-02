@@ -29,4 +29,4 @@ for user_id in ids:
         mentions[mention['id_str']] = n
 
     with open(w, 'w') as file:
-      json.dump(sorted(mentions, key=mentions.get, reverse=True)[:3], file)
+      json.dump(sorted(mentions, key=mentions.get, reverse=True)[:5], file)

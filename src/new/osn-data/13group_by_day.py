@@ -45,6 +45,7 @@ for user_id in ids:
           'favourites_count':[],
           'media_count':[],
           'source':[],
+          'source_twitter_or_not':[],
           'week':[],
           'day_night':[],
           'active_passive':[],
@@ -89,6 +90,9 @@ for user_id in ids:
     with open('./tweets_selected/features_step2/{}/{}source.json'.format(percentage, user_id), 'r') as file:
       source = json.load(file)
         
+    with open('./tweets_selected/features_step2/{}/{}source_twitter_or_not.json'.format(percentage, user_id), 'r') as file:
+      source_twitter_or_not = json.load(file)
+
     with open('./tweets_selected/features_step2/{}/{}week.json'.format(percentage, user_id), 'r') as file:
       week = json.load(file)
         
@@ -149,6 +153,7 @@ for user_id in ids:
       byday[key]['favourites_count'].append(favourites_count[i])
       byday[key]['media_count'].append(media_count[i])
       byday[key]['source'].append(source[i])
+      byday[key]['source_twitter_or_not'].append(source_twitter_or_not[i])
       byday[key]['week'].append(week[i])
       byday[key]['day_night'].append(day_night[i])
       byday[key]['active_passive'].append(active_passive[i])

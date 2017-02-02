@@ -20,8 +20,6 @@ for user_id in ids:
 
     i = 0
     auto_inc = {}
-    j = 0
-    auto_inc2 = {}
     k = 0
     auto_inc_mentions = {}
     l = 0
@@ -51,8 +49,18 @@ for user_id in ids:
       media_count = day['media_count']
       media_count = sum(media_count)
 
+      j = 0
+      auto_inc2 = {}
       source = day['source']
-      source = len(set(source))
+      source_values = []
+      for sss in source:
+        if sss not in auto_inc2:
+          j += 1
+          auto_inc2[source] = j
+        source_values.append(auto_inc2[sss])
+
+      source_twitter_or_not = day['source_twitter_or_not']
+      source_twitter_or_not = sum(source_twitter_or_not)
 
       try:
         week = day['week'][0]
@@ -117,6 +125,8 @@ for user_id in ids:
         tags_values.append(auto_inc[tag])
       '''
 
+      j = 0
+      auto_inc2 = {}
       coordinates = day['coordinates']
       coordinates_values = []
       for coordinate in coordinates:
@@ -168,7 +178,8 @@ for user_id in ids:
         'mentions_count':mentions_count,
         'favourites_count':favourites_count,
         'media_count':media_count,
-        'source':source,
+        'source':source_values,
+        'source_twitter_or_not':source_twitter_or_not,
         'week':week,
         'day_night':day_night,
         'active_passive':active_passive,

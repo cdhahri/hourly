@@ -15,8 +15,8 @@ def process(tweets, selected_days, targets, w):
     i += 1
     # Tue Sep 27 01:58:41 +0000 2016
     # if targets[i] == '0':
-    if tweets[key]['source'] not in sources or targets[i] != '0':
-      continue
+    # if tweets[key]['source'] not in sources or targets[i] != '0':
+      # continue
     current_day = tweets[key]['created_at']
     current_day_object = datetime.strptime(current_day, '%a %b %d %H:%M:%S %z %Y')
     next_day_object = current_day_object + timedelta(days=1)
