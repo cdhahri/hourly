@@ -74,6 +74,9 @@ for query in queries:
     # index for fast lookup
     tweets['tweets_idx'].append(tweet['id_str'])
 
+    if len(tweet['entities']['urls']) == 0:
+      continue
+
     needed = {'url':tweet['entities']['urls'][0]['display_url'],'id':tweet['user']['id_str'],'user_name':tweet['user']['screen_name']}
 
     # append
