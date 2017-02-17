@@ -25,6 +25,16 @@ CREATE TABLE `tweet` (
 
 INSERT INTO `user` (twitter_id) VALUES ('10449052');
 
+-- RUNKEEPER
+ALTER TABLE `user` ADD `runkeeper_url` varchar(200);
+
+CREATE TABLE `history_runkeeper` (
+  `twitter_id` varchar(100) NOT NULL,
+  `time_id`    char(13)     NOT NULL,
+  `data`       TEXT         NOT NULL,
+  PRIMARY KEY (`twitter_id`, `time_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- FITBIT
 ALTER TABLE `user` ADD `fitbit_url` varchar(200);
 

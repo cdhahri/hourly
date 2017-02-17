@@ -56,7 +56,7 @@ for user_id in ids:
       for sss in source:
         if sss not in auto_inc2:
           j += 1
-          auto_inc2[source] = j
+          auto_inc2[sss] = j
         source_values.append(auto_inc2[sss])
 
       source_twitter_or_not = day['source_twitter_or_not']

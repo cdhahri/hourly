@@ -121,6 +121,21 @@ def tweet__read(tweet_id):
     db.close()
 
 #
+# history_runkeeper
+#
+def history_runkeeper__create(twitter_id, time_id, data):
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('INSERT INTO history_runkeeper (twitter_id,time_id,data) VALUES (%s,%s,%s)', (twitter_id, time_id, data))
+    db.commit()
+  except Exception as e:
+    print('[ERR] db.history_runkeeper__create: {0}'.format(e))
+    db.rollback()
+  finally:
+    db.close()
+
+#
 # history_fitbit
 #
 def history_fitbit__create(twitter_id, time_id, data):
