@@ -28,6 +28,22 @@ def user__read__all():
   finally:
     db.close()
 
+def user__read__all_fitbit():
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('SELECT twitter_id FROM user WHERE fitbit_url != NULL;')
+    results = cursor.fetchall()
+    users = []
+    for result in results:
+      users.append(result[0])
+    return users
+  except Exception as e:
+    print('[ERR] db.user__read__all_fitbit: {0}'.format(e))
+    return {}
+  finally:
+    db.close()
+
 def user__update__since_id(twitter_id, since_id):
   try:
     db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
@@ -64,6 +80,22 @@ def history_twitter__create(twitter_id, time_id, data):
   except Exception as e:
     print('[ERR] db.history_twitter__create: {0}'.format(e))
     db.rollback()
+  finally:
+    db.close()
+
+def history_twitter__read__all_tweet_ids(twitter_id):
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('SELECT data FROM history_twitter WHERE twitter_id = %s;', (twitter_id))
+    results = cursor.fetchall()
+    tweet_ids = []
+    for result in results:
+      tweet_ids.extend(result[0]['tweets'])
+    return sorted(list(set(tweet_ids)))
+  except Exception as e:
+    print('[ERR] db.history_twitter__read__all_tweet_ids: {0}'.format(e))
+    return []
   finally:
     db.close()
 
@@ -162,6 +194,22 @@ def history_fitbit__read(twitter_id, from_time_id, to_time_id):
     return activity
   except Exception as e:
     print('[ERR] db.history_fitbit__read: {0}'.format(e))
+    return []
+  finally:
+    db.close()
+
+def history_fitbit__read__all(twitter_id):
+  try:
+    db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
+    cursor = db.cursor()
+    cursor.execute('SELECT time_id, data FROM history_fitbit WHERE twitter_id = %s ORDER BY time_id;', (twitter_id))
+    results = cursor.fetchall()
+    activity = {}
+    for result in results:
+      activity[result[0]] = result[1]
+    return activity
+  except Exception as e:
+    print('[ERR] db.history_fitbit__read__all: {0}'.format(e))
     return []
   finally:
     db.close()

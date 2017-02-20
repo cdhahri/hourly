@@ -52,6 +52,9 @@ for user_id in ids:
           'mentions':[],
           'coordinates':[],
           'top_mentions_day':[],
+          'fitbit_steps':[],
+          'fitbit_floors':[],
+          'fitbit_distance':[],
 
           # 'count_all_capital':[],
           # 'count_exclamation_mark':[],
@@ -67,6 +70,16 @@ for user_id in ids:
     #
     #
     #
+
+    #
+    # HERE
+    #
+    '../tweets_selected/features_step2/10/{}fitbit_steps.json'.format(user_id)
+    '../tweets_selected/features_step2/10/{}fitbit_floors.json'.format(user_id)
+    '../tweets_selected/features_step2/10/{}fitbit_distance.json'.format(user_id)
+    for each key:
+      if it exists in byday:
+        add it to key
 
     with open('./tweets_selected/{}/{}.json'.format(percentage, user_id), 'r') as file:
       tweets_hash = json.load(file)
