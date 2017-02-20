@@ -9,7 +9,7 @@ def user__read__all():
   try:
     db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
     cursor = db.cursor()
-    cursor.execute('SELECT twitter_id, since_id, fitbit_url, foursquare_id, foursquare_last FROM user;')
+    cursor.execute('SELECT twitter_id, since_id, fitbit_url, foursquare_id, foursquare_last, runkeeper_url FROM user;')
     results = cursor.fetchall()
     users = {}
     for result in results:
@@ -18,9 +18,10 @@ def user__read__all():
       fitbit_url = result[2]
       foursquare_id = result[3]
       foursquare_last = result[4]
+      runkeeper_url = result[5]
       if since_id is None:
         since_id = -1
-      users[twitter_id] = {'since_id':since_id,'fitbit_url':fitbit_url,'foursquare_id':foursquare_id,'foursquare_last':foursquare_last}
+      users[twitter_id] = {'since_id':since_id,'fitbit_url':fitbit_url,'foursquare_id':foursquare_id,'foursquare_last':foursquare_last,'runkeeper_url':runkeeper_url}
     return users
   except Exception as e:
     print('[ERR] db.user__read__all: {0}'.format(e))

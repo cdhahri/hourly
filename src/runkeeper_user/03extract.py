@@ -11,6 +11,6 @@ print('INSERT INTO `user` (twitter_id, runkeeper_url) VALUES ')
 
 for runkeeper in runkeepers:
   if 'url_expanded' in runkeeper:
-    print('(\'{}\', \'{}\'),'.format(runkeeper['user_name'], runkeeper['url_expanded']))
+    print('(\'{}\', \'https://runkeeper.com/user/{}/profile\'),'.format(runkeeper['user_name'], runkeeper['url_expanded']))
 
 print(';')

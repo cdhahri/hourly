@@ -11,7 +11,7 @@ def job():
   print(time_id)
   users = db.user__read__all()
   for twitter_id, meta in users.items():
-    if 'runkeeper_url' not in meta:
+    if meta['runkeeper_url'] is None:
       continue
     html = scrap_runkeeper.home_page(meta['runkeeper_url'])
     if html is None:
@@ -19,7 +19,7 @@ def job():
     data = {
       'activities': scrap_runkeeper.activities(html),
       'miles': scrap_runkeeper.miles(html),
-      'calories': scrap_runkeeper.calorites(html)
+      'calories': scrap_runkeeper.calories(html)
     }
     db.history_runkeeper__create(twitter_id, time_id, json.dumps(data, sort_keys=True))
 

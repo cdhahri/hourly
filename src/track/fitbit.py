@@ -11,6 +11,8 @@ def job():
   print(time_id)
   users = db.user__read__all()
   for twitter_id, meta in users.items():
+    if meta['fitbit_url'] is None:
+      continue
     html = scrap_fitbit.home_page(meta['fitbit_url'])
     if html is None:
       continue

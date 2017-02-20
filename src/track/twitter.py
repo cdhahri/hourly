@@ -14,9 +14,10 @@ def job():
   print(time_id)
   users = db.user__read__all()
   for twitter_id, meta in users.items():
-    user = api_twitter.user(token, twitter_id) # get user profile
-    if user is None:
-      continue
+    user = None
+#    user = api_twitter.user(token, twitter_id) # get user profile
+#    if user is None:
+#      continue
     tweets = api_twitter.user_tweets(token, twitter_id, meta['since_id']) # get user tweets
     import util_twitter
     tweet_ids = util_twitter.tweet_ids(tweets)
