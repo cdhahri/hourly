@@ -74,12 +74,13 @@ for user_id in ids:
     #
     # HERE
     #
-    '../tweets_selected/features_step2/10/{}fitbit_steps.json'.format(user_id)
-    '../tweets_selected/features_step2/10/{}fitbit_floors.json'.format(user_id)
-    '../tweets_selected/features_step2/10/{}fitbit_distance.json'.format(user_id)
-    for each key:
-      if it exists in byday:
-        add it to key
+    with open('../tweets_selected/features_step2/10/{}fitbit_steps.json'.format(user_id)) as file:
+      fitbit_steps = json.load(file)
+    for key in fitbit_steps:
+      if key in byday:
+        print('YES')
+#    '../tweets_selected/features_step2/10/{}fitbit_floors.json'.format(user_id)
+#    '../tweets_selected/features_step2/10/{}fitbit_distance.json'.format(user_id)
 
     with open('./tweets_selected/{}/{}.json'.format(percentage, user_id), 'r') as file:
       tweets_hash = json.load(file)

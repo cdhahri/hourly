@@ -19,10 +19,11 @@ for user_id in ids:
 	data = []
 	for key in sorted(tweets_hash.keys()):
 		text = tweets_hash[key]['text']
+		print(text.encode('utf-8'))
 		data.append({'text':text})
 
 	body = {'data':data}
-
+'''
 	try:
 		r = requests.post(url, params=params, json=body)
 		tweets = json.loads(r.text)['data']
@@ -34,3 +35,4 @@ for user_id in ids:
 			json.dump(targets, file)
 	except Exception as e:
 		print('[ERR] {0}'.format(e))
+'''

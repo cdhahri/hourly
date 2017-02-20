@@ -33,7 +33,7 @@ def user__read__all_fitbit():
   try:
     db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
     cursor = db.cursor()
-    cursor.execute('SELECT twitter_id FROM user WHERE fitbit_url != NULL;')
+    cursor.execute('SELECT twitter_id FROM user WHERE fitbit_url IS NOT NULL;')
     results = cursor.fetchall()
     users = []
     for result in results:
@@ -88,11 +88,14 @@ def history_twitter__read__all_tweet_ids(twitter_id):
   try:
     db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
     cursor = db.cursor()
-    cursor.execute('SELECT data FROM history_twitter WHERE twitter_id = %s;', (twitter_id))
+    query = 'SELECT data FROM history_twitter WHERE twitter_id = "{}";'.format(twitter_id)
+    cursor.execute(query)
     results = cursor.fetchall()
     tweet_ids = []
     for result in results:
-      tweet_ids.extend(result[0]['tweets'])
+      import json
+      data = json.loads(result[0])
+      tweet_ids.extend(data['tweets'])
     return sorted(list(set(tweet_ids)))
   except Exception as e:
     print('[ERR] db.history_twitter__read__all_tweet_ids: {0}'.format(e))
@@ -203,11 +206,12 @@ def history_fitbit__read__all(twitter_id):
   try:
     db = MySQLdb.connect(host='localhost',port=3306,user='root',passwd='root',db='hourly')
     cursor = db.cursor()
-    cursor.execute('SELECT time_id, data FROM history_fitbit WHERE twitter_id = %s ORDER BY time_id;', (twitter_id))
+    cursor.execute('SELECT time_id, data FROM history_fitbit WHERE twitter_id = %s ORDER BY time_id;', (twitter_id,))
     results = cursor.fetchall()
     activity = {}
     for result in results:
-      activity[result[0]] = result[1]
+      import json
+      activity[result[0]] = json.loads(result[1])
     return activity
   except Exception as e:
     print('[ERR] db.history_fitbit__read__all: {0}'.format(e))

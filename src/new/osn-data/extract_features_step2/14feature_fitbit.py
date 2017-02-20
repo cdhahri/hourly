@@ -14,7 +14,7 @@ for user_id in ids:
   distance = {}
   for key in sorted(fitbit_activities.keys()):
     import re
-    match = re.match('^(.+)-(.+)-(.+)-.+$')
+    match = re.match('^(.+)-(.+)-(.+)-.+$', key)
     day = '{}-{}-{}'.format(match.group(1),match.group(2),match.group(3))
     if day not in steps:
       steps[day] = []
