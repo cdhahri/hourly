@@ -21,9 +21,10 @@ def process(tweets, targets, selected_days, w):
 
   with open(w, 'w') as file:
     json.dump(out, file, sort_keys=True)
-  
-with open('./ids2.json', 'r') as file:
-# with open('/vagrant/src/track/data/ids.json', 'r') as file:
+
+
+
+with open('./ids.json', 'r') as file:
   ids = json.load(file)
   
 percentages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -31,9 +32,7 @@ percentages = [10]
 
 for user_id in ids:
   r = './tweets_raw/{}.json'.format(user_id)
-  # r = '/vagrant/src/track/data/tweets/{}.json'.format(user_id)
-  targets_path = './tweets_raw/features_step1/{}target.json'.format(user_id)
-  # targets_path = '/vagrant/src/track/data/tweets/targets/{}target.json'.format(user_id)
+  targets_path = '/vagrant/src/laurent_luce/targets2/{}target.json'.format(user_id)
   selected_days_path = './tweets_selected/days/{}.json'.format(user_id)
 
   with open(r, 'r') as file:
@@ -53,5 +52,5 @@ for user_id in ids:
         break
       selected_days_subset[key] = selected_days[key]
 
-    w = './tweets_selected/features_step1/{}/{}target.json'.format(percentage, user_id)
+    w = '/vagrant/src/laurent_luce/targets3/{}target.json'.format(user_id)
     process(tweets, targets, selected_days_subset, w)

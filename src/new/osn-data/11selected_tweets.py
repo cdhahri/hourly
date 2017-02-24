@@ -26,7 +26,7 @@ def process(tweets, selected_days, targets, w):
   with open(w, 'w') as file:
     json.dump(out, file, sort_keys=True)
   
-with open('./ids.json', 'r') as file:
+with open('./ids2.json', 'r') as file:
   ids = json.load(file)
   
 percentages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]

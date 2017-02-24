@@ -24,15 +24,16 @@ import config
 token = config.load_token('/vagrant/config/twitter.json')
 
 import json
-with open('./ids.json', 'r') as file:
+# with open('./ids.json', 'r') as file:
+with open('/vagrant/src/runkeeper_user/data/ids.json', 'r') as file:
   ids = json.load(file)
 
 for user_id in ids:
   print('BEGIN {}'.format(user_id))
 
   import os.path
-  if os.path.exists('./tweets_raw/{}.json'.format(user_id)):
-    continue
+#  if os.path.exists('./tweets_raw/{}.json'.format(user_id)):
+#    continue
 
   tweets_hash = {}
 
